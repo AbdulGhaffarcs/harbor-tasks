@@ -1,0 +1,42 @@
+schema_version = "1.1"
+version = "1.0"
+
+[[sources]]
+source_name = "1930s Australian State House Floor Plan"
+source_url = "https://commons.wikimedia.org/wiki/File:1930s_state_house.jpg"
+source_license = "Public Domain"
+derived_files = ["environment/data/floorplan.jpg"]
+notes = "1930s Australian government state house floor plan. Published before 1931, public domain in Australia and the United States under PD-old. Original from Wikimedia Commons."
+
+[task]
+name = "floor-plan-room-connections"
+description = "Given a residential floor plan image, identify all rooms and which pairs of rooms are directly connected via a doorway. Output a room adjacency graph as JSON."
+authors = [{ name = "Abdul Ghaffar", email = "abghaffar360@gmail.com" }]
+keywords = ["floor-plan", "spatial-reasoning", "adjacency-graph", "visual-reasoning", "architecture"]
+
+[metadata]
+difficulty = "medium"
+category = "visual-reasoning"
+difficulty_explanation = "Agent must read all room labels from a real architectural floor plan, identify door arc symbols between rooms, and output a correct adjacency graph. Requires multiple careful inspections — small door arcs are easy to miss on first pass."
+tags = ["floor-plan", "spatial-reasoning", "adjacency-graph", "layout-analysis", "visual-reasoning"]
+parser_name = "pytest"
+
+source = "https://commons.wikimedia.org/wiki/File:1930s_state_house.jpg"
+
+[solution]
+env = {}
+
+[verifier]
+timeout_sec = 300.0
+
+[verifier.env]
+
+[agent]
+timeout_sec = 300.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 2
+memory_mb = 2048
+storage_mb = 2048
+gpus = 0

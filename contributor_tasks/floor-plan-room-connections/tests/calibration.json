@@ -1,0 +1,5 @@
+{
+  "n_rooms": 12,
+  "n_adjacency_pairs": 11,
+  "scoring": "f1_adjacency"
+}
