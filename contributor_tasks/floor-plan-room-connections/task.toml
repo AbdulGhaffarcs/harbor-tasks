@@ -21,7 +21,7 @@ difficulty_explanation = "Agent must read all room labels from a real architectu
 tags = ["floor-plan", "spatial-reasoning", "adjacency-graph", "layout-analysis", "visual-reasoning"]
 parser_name = "pytest"
 
-source = "https://commons.wikimedia.org/wiki/File:1930s_state_house.jpg"
+source = "https://github.com/AbdulGhaffarcs/harbor-tasks"
 
 [solution]
 env = {}
