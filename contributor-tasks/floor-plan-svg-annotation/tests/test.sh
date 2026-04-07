@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -uo pipefail
 TESTS_DIR="/tests"; SCORE_FILE="${TESTS_DIR}/score.txt"
 REWARD_DIR="/logs/verifier"; REWARD_FILE="${REWARD_DIR}/reward.txt"
