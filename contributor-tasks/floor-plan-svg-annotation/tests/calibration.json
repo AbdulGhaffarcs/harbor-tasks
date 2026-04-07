@@ -1,0 +1,15 @@
+{
+  "seed": 42,
+  "n_rooms": 9,
+  "n_doors": 10,
+  "n_windows": 6,
+  "image_size": "640x480",
+  "room_shape": "axis-aligned rectangles only",
+  "matching": "greedy nearest-neighbor",
+  "scoring": {
+    "room_rect_iou": 0.40,
+    "door_hinge_px": 15,
+    "door_leaf_px": 20,
+    "window_midpoint_px": 20
+  }
+}

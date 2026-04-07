@@ -1,0 +1,41 @@
+schema_version = "1.1"
+version = "1.0"
+
+[[sources]]
+source_name = "Synthetic CC0 architectural floor plan (seed=42)"
+source_url = "https://github.com/AbdulGhaffarcs/harbor-tasks"
+source_license = "CC0"
+derived_files = ["environment/data/floorplan.png"]
+notes = "Procedurally generated using Pillow only (seed=42). Standard architectural symbols: thick walls, door arc+leaf, double-line windows, room labels, north arrow, scale bar. No third-party assets. CC0."
+
+[task]
+name = "floor-plan-svg-annotation"
+description = "Given a synthetic CC0 floor plan (640x480px, seed=42), produce an SVG annotation with axis-aligned room rects, door arc paths, hinge/leaf circles, and window markers. Scored by IoU and pixel proximity."
+authors = [{ name = "Abdul Ghaffar", email = "abghaffar360@gmail.com" }]
+keywords = ["floor-plan", "svg", "geometric-annotation", "visual-reasoning", "spatial-analysis"]
+
+[metadata]
+difficulty = "medium"
+category = "visual-reasoning"
+difficulty_explanation = "Agent must parse a synthetic architectural floor plan across three element types (rooms, doors, windows), produce geometrically accurate SVG annotations, and verify alignment across multiple visual inspection passes."
+tags = ["floor-plan", "svg-generation", "geometric-annotation", "spatial-reasoning", "layout-analysis"]
+parser_name = "pytest"
+source = "https://github.com/AbdulGhaffarcs/harbor-tasks"
+
+[solution]
+env = {}
+
+[verifier]
+timeout_sec = 300.0
+
+[verifier.env]
+
+[agent]
+timeout_sec = 300.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 2
+memory_mb = 2048
+storage_mb = 2048
+gpus = 0

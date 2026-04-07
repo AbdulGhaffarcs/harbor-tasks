@@ -1,0 +1,468 @@
+{
+  "seed": 42,
+  "image_width": 640,
+  "image_height": 480,
+  "coordinate_system": "pixels, origin top-left, x-right y-down",
+  "viewport": "0 0 640 480",
+  "wall_thickness_px": 7,
+  "room_shape": "axis-aligned rectangles only",
+  "rooms": {
+    "Living Room": {
+      "bbox": [
+        20,
+        20,
+        270,
+        230
+      ],
+      "centroid": [
+        145,
+        125
+      ]
+    },
+    "Kitchen": {
+      "bbox": [
+        270,
+        20,
+        470,
+        170
+      ],
+      "centroid": [
+        370,
+        95
+      ]
+    },
+    "Dining Room": {
+      "bbox": [
+        270,
+        170,
+        470,
+        290
+      ],
+      "centroid": [
+        370,
+        230
+      ]
+    },
+    "Bedroom 1": {
+      "bbox": [
+        20,
+        230,
+        215,
+        420
+      ],
+      "centroid": [
+        117,
+        325
+      ]
+    },
+    "Bedroom 2": {
+      "bbox": [
+        215,
+        230,
+        410,
+        420
+      ],
+      "centroid": [
+        312,
+        325
+      ]
+    },
+    "Bathroom": {
+      "bbox": [
+        410,
+        230,
+        520,
+        340
+      ],
+      "centroid": [
+        465,
+        285
+      ]
+    },
+    "Hallway": {
+      "bbox": [
+        410,
+        340,
+        520,
+        420
+      ],
+      "centroid": [
+        465,
+        380
+      ]
+    },
+    "Laundry": {
+      "bbox": [
+        470,
+        20,
+        620,
+        130
+      ],
+      "centroid": [
+        545,
+        75
+      ]
+    },
+    "Garage": {
+      "bbox": [
+        20,
+        420,
+        330,
+        475
+      ],
+      "centroid": [
+        175,
+        447
+      ]
+    }
+  },
+  "doors": [
+    {
+      "rooms": [
+        "Living Room",
+        "Kitchen"
+      ],
+      "hinge": [
+        270,
+        90
+      ],
+      "leaf_end": [
+        302,
+        90
+      ],
+      "arc_center": [
+        270,
+        58
+      ],
+      "arc_radius": 32,
+      "sweep": "cw"
+    },
+    {
+      "rooms": [
+        "Living Room",
+        "Bedroom 1"
+      ],
+      "hinge": [
+        120,
+        230
+      ],
+      "leaf_end": [
+        152,
+        230
+      ],
+      "arc_center": [
+        120,
+        198
+      ],
+      "arc_radius": 32,
+      "sweep": "cw"
+    },
+    {
+      "rooms": [
+        "Living Room",
+        "Dining Room"
+      ],
+      "hinge": [
+        270,
+        210
+      ],
+      "leaf_end": [
+        302,
+        210
+      ],
+      "arc_center": [
+        270,
+        178
+      ],
+      "arc_radius": 32,
+      "sweep": "cw"
+    },
+    {
+      "rooms": [
+        "Bedroom 1",
+        "Bedroom 2"
+      ],
+      "hinge": [
+        215,
+        320
+      ],
+      "leaf_end": [
+        247,
+        320
+      ],
+      "arc_center": [
+        215,
+        288
+      ],
+      "arc_radius": 32,
+      "sweep": "cw"
+    },
+    {
+      "rooms": [
+        "Bedroom 2",
+        "Bathroom"
+      ],
+      "hinge": [
+        410,
+        270
+      ],
+      "leaf_end": [
+        442,
+        270
+      ],
+      "arc_center": [
+        410,
+        238
+      ],
+      "arc_radius": 32,
+      "sweep": "cw"
+    },
+    {
+      "rooms": [
+        "Bathroom",
+        "Hallway"
+      ],
+      "hinge": [
+        410,
+        370
+      ],
+      "leaf_end": [
+        442,
+        370
+      ],
+      "arc_center": [
+        410,
+        338
+      ],
+      "arc_radius": 32,
+      "sweep": "cw"
+    },
+    {
+      "rooms": [
+        "Hallway",
+        "Dining Room"
+      ],
+      "hinge": [
+        470,
+        370
+      ],
+      "leaf_end": [
+        438,
+        370
+      ],
+      "arc_center": [
+        470,
+        338
+      ],
+      "arc_radius": 32,
+      "sweep": "ccw"
+    },
+    {
+      "rooms": [
+        "Kitchen",
+        "Laundry"
+      ],
+      "hinge": [
+        470,
+        85
+      ],
+      "leaf_end": [
+        502,
+        85
+      ],
+      "arc_center": [
+        470,
+        53
+      ],
+      "arc_radius": 32,
+      "sweep": "cw"
+    },
+    {
+      "rooms": [
+        "Bedroom 1",
+        "Garage"
+      ],
+      "hinge": [
+        120,
+        420
+      ],
+      "leaf_end": [
+        152,
+        420
+      ],
+      "arc_center": [
+        120,
+        388
+      ],
+      "arc_radius": 32,
+      "sweep": "cw"
+    },
+    {
+      "rooms": [
+        "Dining Room",
+        "Bedroom 2"
+      ],
+      "hinge": [
+        360,
+        290
+      ],
+      "leaf_end": [
+        392,
+        290
+      ],
+      "arc_center": [
+        360,
+        258
+      ],
+      "arc_radius": 32,
+      "sweep": "cw"
+    }
+  ],
+  "windows": [
+    {
+      "room": "Living Room",
+      "wall": "top",
+      "p1": [
+        60,
+        20
+      ],
+      "p2": [
+        120,
+        20
+      ],
+      "midpoint": [
+        90,
+        20
+      ]
+    },
+    {
+      "room": "Living Room",
+      "wall": "left",
+      "p1": [
+        20,
+        80
+      ],
+      "p2": [
+        20,
+        140
+      ],
+      "midpoint": [
+        20,
+        110
+      ]
+    },
+    {
+      "room": "Kitchen",
+      "wall": "top",
+      "p1": [
+        310,
+        20
+      ],
+      "p2": [
+        380,
+        20
+      ],
+      "midpoint": [
+        345,
+        20
+      ]
+    },
+    {
+      "room": "Bedroom 1",
+      "wall": "left",
+      "p1": [
+        20,
+        280
+      ],
+      "p2": [
+        20,
+        340
+      ],
+      "midpoint": [
+        20,
+        310
+      ]
+    },
+    {
+      "room": "Bedroom 2",
+      "wall": "bottom",
+      "p1": [
+        260,
+        420
+      ],
+      "p2": [
+        340,
+        420
+      ],
+      "midpoint": [
+        300,
+        420
+      ]
+    },
+    {
+      "room": "Laundry",
+      "wall": "right",
+      "p1": [
+        620,
+        55
+      ],
+      "p2": [
+        620,
+        95
+      ],
+      "midpoint": [
+        620,
+        75
+      ]
+    }
+  ],
+  "adjacency": [
+    [
+      "Living Room",
+      "Kitchen"
+    ],
+    [
+      "Living Room",
+      "Bedroom 1"
+    ],
+    [
+      "Living Room",
+      "Dining Room"
+    ],
+    [
+      "Bedroom 1",
+      "Bedroom 2"
+    ],
+    [
+      "Bedroom 2",
+      "Bathroom"
+    ],
+    [
+      "Bathroom",
+      "Hallway"
+    ],
+    [
+      "Hallway",
+      "Dining Room"
+    ],
+    [
+      "Kitchen",
+      "Laundry"
+    ],
+    [
+      "Bedroom 1",
+      "Garage"
+    ],
+    [
+      "Dining Room",
+      "Bedroom 2"
+    ]
+  ],
+  "scoring": {
+    "matching": "greedy nearest-neighbor (Hungarian equivalent for small N)",
+    "room_rect_iou_threshold": 0.4,
+    "door_hinge_tolerance_px": 15,
+    "door_leaf_tolerance_px": 20,
+    "window_midpoint_tolerance_px": 20
+  }
+}
