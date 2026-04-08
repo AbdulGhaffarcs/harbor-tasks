@@ -1,118 +1,154 @@
 {
   "seed": 42,
-  "image_width": 640,
-  "image_height": 480,
+  "image_width": 800,
+  "image_height": 600,
   "coordinate_system": "pixels, origin top-left, x-right y-down",
-  "viewport": "0 0 640 480",
-  "wall_thickness_px": 7,
+  "viewport": "0 0 800 600",
+  "wall_thickness_px": 6,
   "room_shape": "axis-aligned rectangles only",
   "rooms": {
     "Living Room": {
       "bbox": [
         20,
         20,
-        270,
-        230
+        280,
+        240
       ],
       "centroid": [
-        145,
-        125
+        150,
+        130
       ]
     },
     "Kitchen": {
       "bbox": [
-        270,
+        280,
         20,
-        470,
-        170
+        500,
+        180
       ],
       "centroid": [
-        370,
-        95
+        390,
+        100
       ]
     },
     "Dining Room": {
       "bbox": [
-        270,
-        170,
-        470,
-        290
+        280,
+        180,
+        500,
+        320
       ],
       "centroid": [
-        370,
-        230
+        390,
+        250
       ]
     },
-    "Bedroom 1": {
+    "Master Bed": {
       "bbox": [
         20,
-        230,
-        215,
-        420
+        240,
+        220,
+        440
       ],
       "centroid": [
-        117,
-        325
+        120,
+        340
       ]
     },
     "Bedroom 2": {
       "bbox": [
-        215,
-        230,
-        410,
-        420
+        220,
+        240,
+        420,
+        440
       ],
       "centroid": [
-        312,
-        325
+        320,
+        340
       ]
     },
-    "Bathroom": {
+    "Bedroom 3": {
       "bbox": [
-        410,
-        230,
-        520,
-        340
+        420,
+        240,
+        600,
+        440
       ],
       "centroid": [
-        465,
-        285
+        510,
+        340
+      ]
+    },
+    "Bathroom 1": {
+      "bbox": [
+        600,
+        240,
+        720,
+        360
+      ],
+      "centroid": [
+        660,
+        300
+      ]
+    },
+    "Bathroom 2": {
+      "bbox": [
+        600,
+        360,
+        720,
+        440
+      ],
+      "centroid": [
+        660,
+        400
       ]
     },
     "Hallway": {
       "bbox": [
-        410,
-        340,
-        520,
-        420
+        500,
+        180,
+        720,
+        240
       ],
       "centroid": [
-        465,
-        380
+        610,
+        210
       ]
     },
     "Laundry": {
       "bbox": [
-        470,
+        500,
         20,
-        620,
+        720,
         130
       ],
       "centroid": [
-        545,
+        610,
         75
+      ]
+    },
+    "Study": {
+      "bbox": [
+        720,
+        20,
+        800,
+        200
+      ],
+      "centroid": [
+        760,
+        110
       ]
     },
     "Garage": {
       "bbox": [
         20,
-        420,
-        330,
-        475
+        440,
+        340,
+        580
       ],
       "centroid": [
-        175,
-        447
+        180,
+        510
       ]
     }
   },
@@ -123,38 +159,38 @@
         "Kitchen"
       ],
       "hinge": [
-        270,
-        90
+        280,
+        100
       ],
       "leaf_end": [
-        302,
-        90
+        308,
+        100
       ],
       "arc_center": [
-        270,
-        58
+        280,
+        72
       ],
-      "arc_radius": 32,
+      "arc_radius": 28,
       "sweep": "cw"
     },
     {
       "rooms": [
         "Living Room",
-        "Bedroom 1"
+        "Master Bed"
       ],
       "hinge": [
         120,
-        230
+        240
       ],
       "leaf_end": [
-        152,
-        230
+        148,
+        240
       ],
       "arc_center": [
         120,
-        198
+        212
       ],
-      "arc_radius": 32,
+      "arc_radius": 28,
       "sweep": "cw"
     },
     {
@@ -163,98 +199,18 @@
         "Dining Room"
       ],
       "hinge": [
-        270,
-        210
+        280,
+        220
       ],
       "leaf_end": [
-        302,
-        210
+        252,
+        220
       ],
       "arc_center": [
-        270,
-        178
+        280,
+        192
       ],
-      "arc_radius": 32,
-      "sweep": "cw"
-    },
-    {
-      "rooms": [
-        "Bedroom 1",
-        "Bedroom 2"
-      ],
-      "hinge": [
-        215,
-        320
-      ],
-      "leaf_end": [
-        247,
-        320
-      ],
-      "arc_center": [
-        215,
-        288
-      ],
-      "arc_radius": 32,
-      "sweep": "cw"
-    },
-    {
-      "rooms": [
-        "Bedroom 2",
-        "Bathroom"
-      ],
-      "hinge": [
-        410,
-        270
-      ],
-      "leaf_end": [
-        442,
-        270
-      ],
-      "arc_center": [
-        410,
-        238
-      ],
-      "arc_radius": 32,
-      "sweep": "cw"
-    },
-    {
-      "rooms": [
-        "Bathroom",
-        "Hallway"
-      ],
-      "hinge": [
-        410,
-        370
-      ],
-      "leaf_end": [
-        442,
-        370
-      ],
-      "arc_center": [
-        410,
-        338
-      ],
-      "arc_radius": 32,
-      "sweep": "cw"
-    },
-    {
-      "rooms": [
-        "Hallway",
-        "Dining Room"
-      ],
-      "hinge": [
-        470,
-        370
-      ],
-      "leaf_end": [
-        438,
-        370
-      ],
-      "arc_center": [
-        470,
-        338
-      ],
-      "arc_radius": 32,
+      "arc_radius": 28,
       "sweep": "ccw"
     },
     {
@@ -263,38 +219,18 @@
         "Laundry"
       ],
       "hinge": [
-        470,
-        85
+        500,
+        90
       ],
       "leaf_end": [
-        502,
-        85
+        528,
+        90
       ],
       "arc_center": [
-        470,
-        53
+        500,
+        62
       ],
-      "arc_radius": 32,
-      "sweep": "cw"
-    },
-    {
-      "rooms": [
-        "Bedroom 1",
-        "Garage"
-      ],
-      "hinge": [
-        120,
-        420
-      ],
-      "leaf_end": [
-        152,
-        420
-      ],
-      "arc_center": [
-        120,
-        388
-      ],
-      "arc_radius": 32,
+      "arc_radius": 28,
       "sweep": "cw"
     },
     {
@@ -303,19 +239,179 @@
         "Bedroom 2"
       ],
       "hinge": [
-        360,
+        350,
+        320
+      ],
+      "leaf_end": [
+        322,
+        320
+      ],
+      "arc_center": [
+        350,
+        292
+      ],
+      "arc_radius": 28,
+      "sweep": "ccw"
+    },
+    {
+      "rooms": [
+        "Dining Room",
+        "Hallway"
+      ],
+      "hinge": [
+        500,
+        260
+      ],
+      "leaf_end": [
+        528,
+        260
+      ],
+      "arc_center": [
+        500,
+        232
+      ],
+      "arc_radius": 28,
+      "sweep": "cw"
+    },
+    {
+      "rooms": [
+        "Master Bed",
+        "Bathroom 1"
+      ],
+      "hinge": [
+        420,
+        300
+      ],
+      "leaf_end": [
+        448,
+        300
+      ],
+      "arc_center": [
+        420,
+        272
+      ],
+      "arc_radius": 28,
+      "sweep": "cw"
+    },
+    {
+      "rooms": [
+        "Bedroom 2",
+        "Bathroom 1"
+      ],
+      "hinge": [
+        600,
         290
       ],
       "leaf_end": [
-        392,
+        572,
         290
       ],
       "arc_center": [
-        360,
-        258
+        600,
+        262
       ],
-      "arc_radius": 32,
+      "arc_radius": 28,
+      "sweep": "ccw"
+    },
+    {
+      "rooms": [
+        "Bathroom 1",
+        "Bathroom 2"
+      ],
+      "hinge": [
+        600,
+        360
+      ],
+      "leaf_end": [
+        628,
+        360
+      ],
+      "arc_center": [
+        600,
+        332
+      ],
+      "arc_radius": 28,
       "sweep": "cw"
+    },
+    {
+      "rooms": [
+        "Bedroom 3",
+        "Bathroom 2"
+      ],
+      "hinge": [
+        600,
+        390
+      ],
+      "leaf_end": [
+        572,
+        390
+      ],
+      "arc_center": [
+        600,
+        362
+      ],
+      "arc_radius": 28,
+      "sweep": "ccw"
+    },
+    {
+      "rooms": [
+        "Hallway",
+        "Study"
+      ],
+      "hinge": [
+        720,
+        110
+      ],
+      "leaf_end": [
+        692,
+        110
+      ],
+      "arc_center": [
+        720,
+        82
+      ],
+      "arc_radius": 28,
+      "sweep": "ccw"
+    },
+    {
+      "rooms": [
+        "Master Bed",
+        "Garage"
+      ],
+      "hinge": [
+        120,
+        440
+      ],
+      "leaf_end": [
+        148,
+        440
+      ],
+      "arc_center": [
+        120,
+        412
+      ],
+      "arc_radius": 28,
+      "sweep": "cw"
+    },
+    {
+      "rooms": [
+        "Bedroom 2",
+        "Garage"
+      ],
+      "hinge": [
+        280,
+        440
+      ],
+      "leaf_end": [
+        252,
+        440
+      ],
+      "arc_center": [
+        280,
+        412
+      ],
+      "arc_radius": 28,
+      "sweep": "ccw"
     }
   ],
   "windows": [
@@ -327,11 +423,11 @@
         20
       ],
       "p2": [
-        120,
+        140,
         20
       ],
       "midpoint": [
-        90,
+        100,
         20
       ]
     },
@@ -340,79 +436,111 @@
       "wall": "left",
       "p1": [
         20,
-        80
+        100
       ],
       "p2": [
         20,
-        140
+        180
       ],
       "midpoint": [
         20,
-        110
+        140
       ]
     },
     {
       "room": "Kitchen",
       "wall": "top",
       "p1": [
-        310,
+        330,
         20
       ],
       "p2": [
-        380,
+        420,
         20
       ],
       "midpoint": [
-        345,
+        375,
         20
       ]
     },
     {
-      "room": "Bedroom 1",
+      "room": "Master Bed",
       "wall": "left",
       "p1": [
         20,
-        280
+        300
       ],
       "p2": [
         20,
-        340
+        380
       ],
       "midpoint": [
         20,
-        310
+        340
       ]
     },
     {
       "room": "Bedroom 2",
       "wall": "bottom",
       "p1": [
-        260,
-        420
+        270,
+        440
       ],
       "p2": [
-        340,
-        420
+        360,
+        440
       ],
       "midpoint": [
-        300,
-        420
+        315,
+        440
+      ]
+    },
+    {
+      "room": "Bedroom 3",
+      "wall": "bottom",
+      "p1": [
+        460,
+        440
+      ],
+      "p2": [
+        560,
+        440
+      ],
+      "midpoint": [
+        510,
+        440
+      ]
+    },
+    {
+      "room": "Study",
+      "wall": "right",
+      "p1": [
+        800,
+        60
+      ],
+      "p2": [
+        800,
+        150
+      ],
+      "midpoint": [
+        800,
+        105
       ]
     },
     {
       "room": "Laundry",
-      "wall": "right",
+      "wall": "top",
       "p1": [
-        620,
-        55
+        540,
+        20
       ],
       "p2": [
         620,
-        95
+        20
       ],
       "midpoint": [
-        620,
-        75
+        580,
+        20
       ]
     }
   ],
@@ -423,26 +551,10 @@
     ],
     [
       "Living Room",
-      "Bedroom 1"
+      "Master Bed"
     ],
     [
       "Living Room",
-      "Dining Room"
-    ],
-    [
-      "Bedroom 1",
-      "Bedroom 2"
-    ],
-    [
-      "Bedroom 2",
-      "Bathroom"
-    ],
-    [
-      "Bathroom",
-      "Hallway"
-    ],
-    [
-      "Hallway",
       "Dining Room"
     ],
     [
@@ -450,19 +562,47 @@
       "Laundry"
     ],
     [
-      "Bedroom 1",
-      "Garage"
+      "Dining Room",
+      "Bedroom 2"
     ],
     [
       "Dining Room",
-      "Bedroom 2"
+      "Hallway"
+    ],
+    [
+      "Master Bed",
+      "Bathroom 1"
+    ],
+    [
+      "Bedroom 2",
+      "Bathroom 1"
+    ],
+    [
+      "Bathroom 1",
+      "Bathroom 2"
+    ],
+    [
+      "Bedroom 3",
+      "Bathroom 2"
+    ],
+    [
+      "Hallway",
+      "Study"
+    ],
+    [
+      "Master Bed",
+      "Garage"
+    ],
+    [
+      "Bedroom 2",
+      "Garage"
     ]
   ],
   "scoring": {
-    "matching": "greedy nearest-neighbor (Hungarian equivalent for small N)",
-    "room_rect_iou_threshold": 0.4,
-    "door_hinge_tolerance_px": 15,
-    "door_leaf_tolerance_px": 20,
-    "window_midpoint_tolerance_px": 20
+    "matching": "greedy nearest-neighbor",
+    "room_rect_iou_threshold": 0.35,
+    "door_hinge_tolerance_px": 25,
+    "door_leaf_tolerance_px": 15,
+    "window_midpoint_tolerance_px": 30
   }
 }

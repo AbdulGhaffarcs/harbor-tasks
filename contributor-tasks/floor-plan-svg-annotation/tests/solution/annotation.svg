@@ -1,95 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480">
-  <!-- CC0 Synthetic Floor Plan Annotation. Seed=42. Viewport:0 0 640 480. Pixels, origin top-left. -->
-  <!-- Rooms: axis-aligned rectangles only. -->
-  <image href="floorplan.png" x="0" y="0" width="640" height="480" opacity="0.45"/>
-
-  <!-- Layer: room boundary rectangles (IoU scored) -->
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <image href="floorplan.png" x="0" y="0" width="800" height="600" opacity="0.45"/>
   <g id="rooms">
-    <rect data-room="Living Room" x="20" y="20" width="250" height="210" fill="#4A90D9" fill-opacity="0.18" stroke="#4A90D9" stroke-width="2"/>
-    <rect data-room="Kitchen" x="270" y="20" width="200" height="150" fill="#E8652A" fill-opacity="0.18" stroke="#E8652A" stroke-width="2"/>
-    <rect data-room="Dining Room" x="270" y="170" width="200" height="120" fill="#2CA02C" fill-opacity="0.18" stroke="#2CA02C" stroke-width="2"/>
-    <rect data-room="Bedroom 1" x="20" y="230" width="195" height="190" fill="#9467BD" fill-opacity="0.18" stroke="#9467BD" stroke-width="2"/>
-    <rect data-room="Bedroom 2" x="215" y="230" width="195" height="190" fill="#D62728" fill-opacity="0.18" stroke="#D62728" stroke-width="2"/>
-    <rect data-room="Bathroom" x="410" y="230" width="110" height="110" fill="#8C564B" fill-opacity="0.18" stroke="#8C564B" stroke-width="2"/>
-    <rect data-room="Hallway" x="410" y="340" width="110" height="80" fill="#E377C2" fill-opacity="0.18" stroke="#E377C2" stroke-width="2"/>
-    <rect data-room="Laundry" x="470" y="20" width="150" height="110" fill="#7F7F7F" fill-opacity="0.18" stroke="#7F7F7F" stroke-width="2"/>
-    <rect data-room="Garage" x="20" y="420" width="310" height="55" fill="#BCBD22" fill-opacity="0.18" stroke="#BCBD22" stroke-width="2"/>
+    <rect data-room="Living Room" x="20" y="20" width="260" height="220" fill="#4A90D9" fill-opacity="0.18" stroke="#4A90D9" stroke-width="2"/>
+    <rect data-room="Kitchen" x="280" y="20" width="220" height="160" fill="#E8652A" fill-opacity="0.18" stroke="#E8652A" stroke-width="2"/>
+    <rect data-room="Dining Room" x="280" y="180" width="220" height="140" fill="#2CA02C" fill-opacity="0.18" stroke="#2CA02C" stroke-width="2"/>
+    <rect data-room="Master Bed" x="20" y="240" width="200" height="200" fill="#9467BD" fill-opacity="0.18" stroke="#9467BD" stroke-width="2"/>
+    <rect data-room="Bedroom 2" x="220" y="240" width="200" height="200" fill="#D62728" fill-opacity="0.18" stroke="#D62728" stroke-width="2"/>
+    <rect data-room="Bedroom 3" x="420" y="240" width="180" height="200" fill="#8C564B" fill-opacity="0.18" stroke="#8C564B" stroke-width="2"/>
+    <rect data-room="Bathroom 1" x="600" y="240" width="120" height="120" fill="#E377C2" fill-opacity="0.18" stroke="#E377C2" stroke-width="2"/>
+    <rect data-room="Bathroom 2" x="600" y="360" width="120" height="80" fill="#7F7F7F" fill-opacity="0.18" stroke="#7F7F7F" stroke-width="2"/>
+    <rect data-room="Hallway" x="500" y="180" width="220" height="60" fill="#BCBD22" fill-opacity="0.18" stroke="#BCBD22" stroke-width="2"/>
+    <rect data-room="Laundry" x="500" y="20" width="220" height="110" fill="#17BECF" fill-opacity="0.18" stroke="#17BECF" stroke-width="2"/>
+    <rect data-room="Study" x="720" y="20" width="80" height="180" fill="#AEC7E8" fill-opacity="0.18" stroke="#AEC7E8" stroke-width="2"/>
+    <rect data-room="Garage" x="20" y="440" width="320" height="140" fill="#F7B6D2" fill-opacity="0.18" stroke="#F7B6D2" stroke-width="2"/>
   </g>
-
-  <!-- Layer: door arc paths + hinge/leaf circles (proximity scored) -->
   <g id="doors">
-  <!-- Living Room / Kitchen -->
-  <path data-door="1" d="M 270 90 L 302 90" stroke="#222" stroke-width="2" fill="none"/>
-  <path data-arc="1" d="M 302 90 A 32 32 0 0 0 270 58" stroke="#222" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
-  <circle data-hinge="1" cx="270" cy="90" r="4" fill="#222"/>
-  <circle data-leaf="1" cx="302" cy="90" r="3" fill="#555"/>
-  <!-- Living Room / Bedroom 1 -->
-  <path data-door="2" d="M 120 230 L 152 230" stroke="#222" stroke-width="2" fill="none"/>
-  <path data-arc="2" d="M 152 230 A 32 32 0 0 0 120 198" stroke="#222" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
-  <circle data-hinge="2" cx="120" cy="230" r="4" fill="#222"/>
-  <circle data-leaf="2" cx="152" cy="230" r="3" fill="#555"/>
-  <!-- Living Room / Dining Room -->
-  <path data-door="3" d="M 270 210 L 302 210" stroke="#222" stroke-width="2" fill="none"/>
-  <path data-arc="3" d="M 302 210 A 32 32 0 0 0 270 178" stroke="#222" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
-  <circle data-hinge="3" cx="270" cy="210" r="4" fill="#222"/>
-  <circle data-leaf="3" cx="302" cy="210" r="3" fill="#555"/>
-  <!-- Bedroom 1 / Bedroom 2 -->
-  <path data-door="4" d="M 215 320 L 247 320" stroke="#222" stroke-width="2" fill="none"/>
-  <path data-arc="4" d="M 247 320 A 32 32 0 0 0 215 288" stroke="#222" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
-  <circle data-hinge="4" cx="215" cy="320" r="4" fill="#222"/>
-  <circle data-leaf="4" cx="247" cy="320" r="3" fill="#555"/>
-  <!-- Bedroom 2 / Bathroom -->
-  <path data-door="5" d="M 410 270 L 442 270" stroke="#222" stroke-width="2" fill="none"/>
-  <path data-arc="5" d="M 442 270 A 32 32 0 0 0 410 238" stroke="#222" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
-  <circle data-hinge="5" cx="410" cy="270" r="4" fill="#222"/>
-  <circle data-leaf="5" cx="442" cy="270" r="3" fill="#555"/>
-  <!-- Bathroom / Hallway -->
-  <path data-door="6" d="M 410 370 L 442 370" stroke="#222" stroke-width="2" fill="none"/>
-  <path data-arc="6" d="M 442 370 A 32 32 0 0 0 410 338" stroke="#222" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
-  <circle data-hinge="6" cx="410" cy="370" r="4" fill="#222"/>
-  <circle data-leaf="6" cx="442" cy="370" r="3" fill="#555"/>
-  <!-- Hallway / Dining Room -->
-  <path data-door="7" d="M 470 370 L 438 370" stroke="#222" stroke-width="2" fill="none"/>
-  <path data-arc="7" d="M 438 370 A 32 32 0 0 0 470 338" stroke="#222" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
-  <circle data-hinge="7" cx="470" cy="370" r="4" fill="#222"/>
-  <circle data-leaf="7" cx="438" cy="370" r="3" fill="#555"/>
-  <!-- Kitchen / Laundry -->
-  <path data-door="8" d="M 470 85 L 502 85" stroke="#222" stroke-width="2" fill="none"/>
-  <path data-arc="8" d="M 502 85 A 32 32 0 0 0 470 53" stroke="#222" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
-  <circle data-hinge="8" cx="470" cy="85" r="4" fill="#222"/>
-  <circle data-leaf="8" cx="502" cy="85" r="3" fill="#555"/>
-  <!-- Bedroom 1 / Garage -->
-  <path data-door="9" d="M 120 420 L 152 420" stroke="#222" stroke-width="2" fill="none"/>
-  <path data-arc="9" d="M 152 420 A 32 32 0 0 0 120 388" stroke="#222" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
-  <circle data-hinge="9" cx="120" cy="420" r="4" fill="#222"/>
-  <circle data-leaf="9" cx="152" cy="420" r="3" fill="#555"/>
-  <!-- Dining Room / Bedroom 2 -->
-  <path data-door="10" d="M 360 290 L 392 290" stroke="#222" stroke-width="2" fill="none"/>
-  <path data-arc="10" d="M 392 290 A 32 32 0 0 0 360 258" stroke="#222" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
-  <circle data-hinge="10" cx="360" cy="290" r="4" fill="#222"/>
-  <circle data-leaf="10" cx="392" cy="290" r="3" fill="#555"/>
+  <path data-door="1" d="M 280 100 L 308 100" stroke="#222" stroke-width="2" fill="none"/>
+  <circle data-hinge="1" cx="280" cy="100" r="4" fill="#222"/>
+  <circle data-leaf="1" cx="308" cy="100" r="3" fill="#555"/>
+  <path data-door="2" d="M 120 240 L 148 240" stroke="#222" stroke-width="2" fill="none"/>
+  <circle data-hinge="2" cx="120" cy="240" r="4" fill="#222"/>
+  <circle data-leaf="2" cx="148" cy="240" r="3" fill="#555"/>
+  <path data-door="3" d="M 280 220 L 252 220" stroke="#222" stroke-width="2" fill="none"/>
+  <circle data-hinge="3" cx="280" cy="220" r="4" fill="#222"/>
+  <circle data-leaf="3" cx="252" cy="220" r="3" fill="#555"/>
+  <path data-door="4" d="M 500 90 L 528 90" stroke="#222" stroke-width="2" fill="none"/>
+  <circle data-hinge="4" cx="500" cy="90" r="4" fill="#222"/>
+  <circle data-leaf="4" cx="528" cy="90" r="3" fill="#555"/>
+  <path data-door="5" d="M 350 320 L 322 320" stroke="#222" stroke-width="2" fill="none"/>
+  <circle data-hinge="5" cx="350" cy="320" r="4" fill="#222"/>
+  <circle data-leaf="5" cx="322" cy="320" r="3" fill="#555"/>
+  <path data-door="6" d="M 500 260 L 528 260" stroke="#222" stroke-width="2" fill="none"/>
+  <circle data-hinge="6" cx="500" cy="260" r="4" fill="#222"/>
+  <circle data-leaf="6" cx="528" cy="260" r="3" fill="#555"/>
+  <path data-door="7" d="M 420 300 L 448 300" stroke="#222" stroke-width="2" fill="none"/>
+  <circle data-hinge="7" cx="420" cy="300" r="4" fill="#222"/>
+  <circle data-leaf="7" cx="448" cy="300" r="3" fill="#555"/>
+  <path data-door="8" d="M 600 290 L 572 290" stroke="#222" stroke-width="2" fill="none"/>
+  <circle data-hinge="8" cx="600" cy="290" r="4" fill="#222"/>
+  <circle data-leaf="8" cx="572" cy="290" r="3" fill="#555"/>
+  <path data-door="9" d="M 600 360 L 628 360" stroke="#222" stroke-width="2" fill="none"/>
+  <circle data-hinge="9" cx="600" cy="360" r="4" fill="#222"/>
+  <circle data-leaf="9" cx="628" cy="360" r="3" fill="#555"/>
+  <path data-door="10" d="M 600 390 L 572 390" stroke="#222" stroke-width="2" fill="none"/>
+  <circle data-hinge="10" cx="600" cy="390" r="4" fill="#222"/>
+  <circle data-leaf="10" cx="572" cy="390" r="3" fill="#555"/>
+  <path data-door="11" d="M 720 110 L 692 110" stroke="#222" stroke-width="2" fill="none"/>
+  <circle data-hinge="11" cx="720" cy="110" r="4" fill="#222"/>
+  <circle data-leaf="11" cx="692" cy="110" r="3" fill="#555"/>
+  <path data-door="12" d="M 120 440 L 148 440" stroke="#222" stroke-width="2" fill="none"/>
+  <circle data-hinge="12" cx="120" cy="440" r="4" fill="#222"/>
+  <circle data-leaf="12" cx="148" cy="440" r="3" fill="#555"/>
+  <path data-door="13" d="M 280 440 L 252 440" stroke="#222" stroke-width="2" fill="none"/>
+  <circle data-hinge="13" cx="280" cy="440" r="4" fill="#222"/>
+  <circle data-leaf="13" cx="252" cy="440" r="3" fill="#555"/>
   </g>
-
-  <!-- Layer: window midpoint markers (proximity scored) -->
   <g id="windows">
-  <circle data-window="1" data-room="Living Room" cx="90" cy="20" r="5" fill="#6495ED" opacity="0.8"/>
-  <circle data-window="2" data-room="Living Room" cx="20" cy="110" r="5" fill="#6495ED" opacity="0.8"/>
-  <circle data-window="3" data-room="Kitchen" cx="345" cy="20" r="5" fill="#6495ED" opacity="0.8"/>
-  <circle data-window="4" data-room="Bedroom 1" cx="20" cy="310" r="5" fill="#6495ED" opacity="0.8"/>
-  <circle data-window="5" data-room="Bedroom 2" cx="300" cy="420" r="5" fill="#6495ED" opacity="0.8"/>
-  <circle data-window="6" data-room="Laundry" cx="620" cy="75" r="5" fill="#6495ED" opacity="0.8"/>
-  </g>
-
-  <!-- Layer: room centroid markers -->
-  <g id="centroids">
-  <circle data-centroid="Living Room" cx="145" cy="125" r="3" fill="#444" opacity="0.7"/>
-  <circle data-centroid="Kitchen" cx="370" cy="95" r="3" fill="#444" opacity="0.7"/>
-  <circle data-centroid="Dining Room" cx="370" cy="230" r="3" fill="#444" opacity="0.7"/>
-  <circle data-centroid="Bedroom 1" cx="117" cy="325" r="3" fill="#444" opacity="0.7"/>
-  <circle data-centroid="Bedroom 2" cx="312" cy="325" r="3" fill="#444" opacity="0.7"/>
-  <circle data-centroid="Bathroom" cx="465" cy="285" r="3" fill="#444" opacity="0.7"/>
-  <circle data-centroid="Hallway" cx="465" cy="380" r="3" fill="#444" opacity="0.7"/>
-  <circle data-centroid="Laundry" cx="545" cy="75" r="3" fill="#444" opacity="0.7"/>
-  <circle data-centroid="Garage" cx="175" cy="447" r="3" fill="#444" opacity="0.7"/>
+  <circle data-window="1" cx="100" cy="20" r="5" fill="#6495ED"/>
+  <circle data-window="2" cx="20" cy="140" r="5" fill="#6495ED"/>
+  <circle data-window="3" cx="375" cy="20" r="5" fill="#6495ED"/>
+  <circle data-window="4" cx="20" cy="340" r="5" fill="#6495ED"/>
+  <circle data-window="5" cx="315" cy="440" r="5" fill="#6495ED"/>
+  <circle data-window="6" cx="510" cy="440" r="5" fill="#6495ED"/>
+  <circle data-window="7" cx="800" cy="105" r="5" fill="#6495ED"/>
+  <circle data-window="8" cx="580" cy="20" r="5" fill="#6495ED"/>
   </g>
 </svg>

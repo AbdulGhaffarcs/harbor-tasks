@@ -10,6 +10,5 @@ if [[ ! -f "${SCORE_FILE}" ]]; then echo "0" > "${REWARD_FILE}"; echo "REWARD=0.
 SCORE=$(cat "${SCORE_FILE}")
 python3 -c "
 s=float('${SCORE}'); r=round(s/100,4)
-print(f'Score:{s:.2f}/100->Reward:{r}')
 open('${REWARD_FILE}','w').write(str(r)); print(f'REWARD={r}')
 "

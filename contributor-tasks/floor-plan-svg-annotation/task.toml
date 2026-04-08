@@ -6,18 +6,18 @@ source_name = "Synthetic CC0 architectural floor plan (seed=42)"
 source_url = "https://github.com/AbdulGhaffarcs/harbor-tasks"
 source_license = "CC0"
 derived_files = ["environment/data/floorplan.png"]
-notes = "Procedurally generated using Pillow only (seed=42). Standard architectural symbols: thick walls, door arc+leaf, double-line windows, room labels, north arrow, scale bar. No third-party assets. CC0."
+notes = "Procedurally generated with Pillow (seed=42, 800x600px, 12 rooms, 13 doors with mixed sweep directions, 8 windows). CC0."
 
 [task]
 name = "floor-plan-svg-annotation"
-description = "Given a synthetic CC0 floor plan (640x480px, seed=42), produce an SVG annotation with axis-aligned room rects, door arc paths, hinge/leaf circles, and window markers. Scored by IoU and pixel proximity."
+description = "Given a synthetic floor plan, produce an SVG annotation. Room bboxes and door hinge positions are provided. Agent must find door leaf-end positions and window midpoints from the image."
 authors = [{ name = "Abdul Ghaffar", email = "abghaffar360@gmail.com" }]
 keywords = ["floor-plan", "svg", "geometric-annotation", "visual-reasoning", "spatial-analysis"]
 
 [metadata]
 difficulty = "medium"
 category = "visual-reasoning"
-difficulty_explanation = "Agent must parse a synthetic architectural floor plan across three element types (rooms, doors, windows), produce geometrically accurate SVG annotations, and verify alignment across multiple visual inspection passes."
+difficulty_explanation = "Room bboxes and door hinge positions are provided in JSON. Agent must visually locate door leaf-ends (mixed CW/CCW sweep directions) and window midpoints from floorplan.png. Running annotate.py with defaults gives 50%; improving requires image analysis."
 tags = ["floor-plan", "svg-generation", "geometric-annotation", "spatial-reasoning", "layout-analysis"]
 parser_name = "pytest"
 source = "https://github.com/AbdulGhaffarcs/harbor-tasks"
