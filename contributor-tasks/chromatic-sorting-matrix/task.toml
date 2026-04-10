@@ -1,29 +1,33 @@
-version = "1.0"
 schema_version = "1.1"
+version = "1.0"
+
+[[sources]]
+source_name = "Synthetic CC0 conveyor sorting network (seed=42)"
+source_url = "https://github.com/AbdulGhaffarcs/harbor-tasks"
+source_license = "CC0"
+derived_files = ["environment/data/sorting_network.png"]
+notes = "Fully synthetic sorting network diagram generated with Pillow. 6 nodes, 4 bins, 10-package queue. No real data. CC0."
 
 [task]
 name = "chromatic-sorting-matrix"
-description = "Extract a directed acyclic graph (DAG) topology into Graphviz DOT and simulate a state machine outputting a trace CSV."
+description = "Extract DAG topology from a sorting network image into Graphviz DOT, then simulate 10 packages through the state-mutating network and output a trace CSV."
 authors = [{ name = "Abdul Ghaffar", email = "abghaffar360@gmail.com" }]
+keywords = ["visual-reasoning","state-machine","topology","graphviz","simulation"]
 
 [metadata]
-tags = ["visual-reasoning", "state-machine", "topology-extraction", "graphviz", "csv"]
 difficulty = "hard"
 category = "visual-reasoning"
-difficulty_explanation = "Anti-cheese design: The agent must generate a Graphviz DOT file proving perfect extraction of visually encoded topology and initial states. It must then execute an algorithmic trace (outputting a CSV) based on a visually encoded queue of inputs, dynamically mutating states per step."
-
-[[sources]]
-name = "Harbor Synthetic Logic Datasets"
-url = "https://github.com/AbdulGhaffarcs/harbor-tasks"
-license = "CC0-1.0"
+difficulty_explanation = "Multi-step: (1) extract 6-node topology with colors and arrow states from image; (2) simulate 10 packages with conditional state mutation (arrow flips when color matches); (3) output DOT + CSV. Difficulty from visual complexity not computation."
+tags = ["visual-reasoning","state-machine","topology-extraction","graphviz","csv","multi-step"]
+parser_name = "pytest"
+source = "https://github.com/AbdulGhaffarcs/harbor-tasks"
 
 [solution]
 env = {}
-command = "bash solution/solve.sh"
 
 [verifier]
-parser_name = "pytest"
-timeout_sec = 120.0
+timeout_sec = 300.0
+[verifier.env]
 
 [agent]
 timeout_sec = 300.0
@@ -33,4 +37,4 @@ build_timeout_sec = 600.0
 cpus = 2
 memory_mb = 2048
 storage_mb = 2048
-gpus = 0    
+gpus = 0

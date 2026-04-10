@@ -1,24 +1,28 @@
-# Task: Chromatic Sorting Matrix Simulation
+# Chromatic Sorting Matrix Simulation
 
-You are managing an automated sorting facility. Analyze the provided image: `sorting_network.png` (located in your current working directory).
+Analyze the image `/task/sorting_network.png` and produce two output files.
 
-### 1. Visual Topology & State Extraction
-The image displays a network of colored nodes (RED, BLUE, GREEN) and final destination Bins. 
-* Each node is labeled with an ID and contains a white diverter arrow pointing Left (L) or Right (R).
-* Paths connecting nodes are explicitly labeled L or R.
-* At the top of the image is the **Incoming Queue**. Packages drop into Node 0 sequentially, starting with the package labeled `1`.
+## Image Contents
 
-### 2. The Routing Simulation Rules
-Simulate the packages passing through the network:
-1. When a package arrives at a node, it routes down the path indicated by the node's **current** diverter arrow (L or R).
-2. **State Mutation:** Immediately after a package passes through a node, if the package's color **MATCHES** the node's color, the node's diverter arrow **FLIPS** (L becomes R, R becomes L). If colors do not match, the arrow remains unchanged.
+The image shows a sorting network with:
+- **6 numbered nodes (0–5)**, each colored RED, BLUE, or GREEN
+- Each node shows a diverter arrow labeled `→L` (routes left) or `→R` (routes right)
+- **Edges** labeled `L` or `R` show which child each direction leads to
+- **4 bins** at the bottom: BIN_A, BIN_B, BIN_C, BIN_D
+- **Incoming queue** at top: 10 packages labeled #1–#10 with colors
+  - Package #1 drops first into Node 0
 
-### Your Goal & Output Artifacts
-You must write **TWO** files to your current working directory.
+## Routing Rules
 
-**File 1: `topology.dot`**
-A strict Graphviz DOT file representing the initial, unmutated topology extracted from the image. 
-*Use exact syntax:*
+1. A package at a node routes to the child indicated by the node's **current** arrow (L or R)
+2. **After routing**: if the package color **matches** the node color → **flip** the arrow (L↔R)
+3. If colors don't match → arrow stays unchanged
+
+## Output Files
+
+Write both files to `/task/`:
+
+**`/task/topology.dot`** — initial state before any packages drop:
 ```dot
 digraph Conveyor {
     0 [color="RED", arrow="L"];
@@ -27,3 +31,19 @@ digraph Conveyor {
     0 -> 2 [label="R"];
     3 -> BIN_A [label="L"];
 }
+```
+
+**`/task/trace.csv`** — one row per package:
+```csv
+package_id,package_color,route,final_bin
+1,RED,0->2->5,BIN_D
+```
+
+Route format: `0->1->4` (node IDs separated by `->`, ending at a node before the bin)
+
+## Scoring
+
+- Topology node colors + arrows: 30pts
+- Topology edges: 30pts  
+- Trace final_bin per package: 30pts
+- Trace route per package: 10pts

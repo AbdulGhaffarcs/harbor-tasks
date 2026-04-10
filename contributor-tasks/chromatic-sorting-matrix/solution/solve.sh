@@ -1,9 +1,7 @@
 #!/bin/bash
-# solution/solve.sh
-# The Oracle runs this to solve the task. Since the Oracle cannot see the 
-# hidden /tests directory, we generate the golden files directly here.
+mkdir -p /task
 
-cat << 'EOF' > topology.dot
+cat << 'DOTEOF' > /task/topology.dot
 digraph Conveyor {
     0 [color="RED", arrow="L"];
     1 [color="BLUE", arrow="R"];
@@ -24,9 +22,9 @@ digraph Conveyor {
     5 -> BIN_C [label="L"];
     5 -> BIN_D [label="R"];
 }
-EOF
+DOTEOF
 
-cat << 'EOF' > trace.csv
+cat << 'CSVEOF' > /task/trace.csv
 package_id,package_color,route,final_bin
 1,RED,0->1->4,BIN_B
 2,BLUE,0->2->4,BIN_C
@@ -38,6 +36,6 @@ package_id,package_color,route,final_bin
 8,BLUE,0->2->4,BIN_B
 9,RED,0->2->4,BIN_B
 10,GREEN,0->1->4,BIN_C
-EOF
+CSVEOF
 
-echo "solve.sh: Golden outputs successfully generated."
+echo "solve.sh: golden topology.dot and trace.csv written to /task/"
