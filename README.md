@@ -4,6 +4,17 @@ Multimodal task contributions for the Harbor framework (Parsewave/Argus).
 
 ## Tasks
 
+#### `chromatic-sorting-matrix`
+**Archetype:** `spatial-reasoning-state-machine` | **Difficulty:** Hard
+
+A multi-layered visual reasoning and algorithmic simulation task. The agent is provided with a synthetically generated CC0 image of a conveyor belt sorting network (`sorting_network.png`). To solve the task, the agent must:
+1. **Extract Topology:** Visually map the nodes, their connections, and the terminal bins.
+2. **Extract State:** Identify the color of each node (Red, Blue, Green) and the initial direction of its diverter arrow.
+3. **Simulate Sequence:** Run a temporal sequence of 10 colored packages dropping through the network.
+4. **Mutate State:** Apply conditional logic where a node's diverter arrow flips direction *only* if a passing package's color matches the node's color.
+
+The agent outputs a structured JSON file containing the final package counts in each bin. The task is evaluated blindly and deterministically using a purely mathematical `pytest` suite—no VLM or external evaluation is used in the scoring pipeline. 
+
 #### `floor-plan-svg-annotation`
 Given a synthetic CC0 floor plan (640×480px, seed=42), produce an SVG annotation with
 room boundary rectangles, door arc paths, hinge/leaf circles, and window markers.
@@ -16,4 +27,4 @@ See [LICENSE](LICENSE) for full text.
 
 ## Contributor
 
-Abdul Ghaffar — abghaffar360@gmail.com — Discord: abdulghaffarofficial
+Abdul Ghaffar — abghaffar360@gmail.com — Discord: abdulghaffar_official
