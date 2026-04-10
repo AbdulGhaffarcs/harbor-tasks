@@ -1,0 +1,36 @@
+version = "1.0"
+schema_version = "1.1"
+
+[task]
+name = "chromatic-sorting-matrix"
+description = "Extract visual topology and simulate a dynamic state-machine to route items through a network."
+authors = [{ name = "Abdul Ghaffar", email = "abghaffar360@gmail.com" }]
+tags = ["visual-reasoning", "state-machine", "topology-extraction", "multi-step"]
+
+[metadata]
+difficulty = "hard"
+category = "visual-reasoning"
+difficulty_explanation = "Forces multi-layered reasoning. The agent must extract visual graph topology, initial node states, and node colors, then simulate a temporal sequence where passing objects dynamically mutate the visual state of the graph based on conditional logic."
+
+[[sources]]
+name = "Harbor Synthetic Logic Datasets"
+url = "https://github.com/AbdulGhaffarcs/harbor-tasks"
+license = "CC0-1.0"
+
+[solution]
+env = {}
+command = "bash solution/solve.sh"
+
+[verifier]
+parser_name = "pytest"
+timeout_sec = 120.0
+
+[agent]
+timeout_sec = 300.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 2
+memory_mb = 2048
+storage_mb = 2048
+gpus = 0
