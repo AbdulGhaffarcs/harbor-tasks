@@ -1,0 +1,243 @@
+{
+  "seed": 7,
+  "image_size": {
+    "width": 800,
+    "height": 800
+  },
+  "n_regions": 26,
+  "method": "local_threshold_watershed",
+  "block_size": 51,
+  "offset": 10,
+  "connectivity": 2,
+  "min_area_px2": 200,
+  "se_open_radius": 2,
+  "watershed_min_distance": 15,
+  "classification_bins": {
+    "normal": {
+      "area_min": 200,
+      "area_max": 800
+    },
+    "enlarged": {
+      "area_min": 801,
+      "area_max": 99999
+    }
+  },
+  "measurements": [
+    {
+      "label": 1,
+      "area_px2": 764,
+      "perimeter": 124.4619,
+      "eccentricity": 0.6889,
+      "mean_intensity": 50.5812,
+      "classification": "normal"
+    },
+    {
+      "label": 2,
+      "area_px2": 977,
+      "perimeter": 114.9117,
+      "eccentricity": 0.6257,
+      "mean_intensity": 59.7482,
+      "classification": "enlarged"
+    },
+    {
+      "label": 3,
+      "area_px2": 781,
+      "perimeter": 102.0833,
+      "eccentricity": 0.6405,
+      "mean_intensity": 56.9834,
+      "classification": "normal"
+    },
+    {
+      "label": 4,
+      "area_px2": 366,
+      "perimeter": 75.9411,
+      "eccentricity": 0.7704,
+      "mean_intensity": 56.459,
+      "classification": "normal"
+    },
+    {
+      "label": 5,
+      "area_px2": 417,
+      "perimeter": 85.3553,
+      "eccentricity": 0.8528,
+      "mean_intensity": 50.7842,
+      "classification": "normal"
+    },
+    {
+      "label": 6,
+      "area_px2": 526,
+      "perimeter": 95.2548,
+      "eccentricity": 0.723,
+      "mean_intensity": 58.5513,
+      "classification": "normal"
+    },
+    {
+      "label": 7,
+      "area_px2": 227,
+      "perimeter": 54.6274,
+      "eccentricity": 0.7539,
+      "mean_intensity": 122.9295,
+      "classification": "normal"
+    },
+    {
+      "label": 8,
+      "area_px2": 648,
+      "perimeter": 116.3614,
+      "eccentricity": 0.8491,
+      "mean_intensity": 45.9985,
+      "classification": "normal"
+    },
+    {
+      "label": 9,
+      "area_px2": 1110,
+      "perimeter": 179.0955,
+      "eccentricity": 0.6568,
+      "mean_intensity": 46.2342,
+      "classification": "enlarged"
+    },
+    {
+      "label": 10,
+      "area_px2": 847,
+      "perimeter": 143.1899,
+      "eccentricity": 0.6333,
+      "mean_intensity": 48.1039,
+      "classification": "enlarged"
+    },
+    {
+      "label": 11,
+      "area_px2": 1165,
+      "perimeter": 126.5685,
+      "eccentricity": 0.6469,
+      "mean_intensity": 54.3897,
+      "classification": "enlarged"
+    },
+    {
+      "label": 12,
+      "area_px2": 551,
+      "perimeter": 99.2548,
+      "eccentricity": 0.8075,
+      "mean_intensity": 48.9347,
+      "classification": "normal"
+    },
+    {
+      "label": 13,
+      "area_px2": 1237,
+      "perimeter": 219.4508,
+      "eccentricity": 0.7845,
+      "mean_intensity": 44.73,
+      "classification": "enlarged"
+    },
+    {
+      "label": 14,
+      "area_px2": 679,
+      "perimeter": 119.533,
+      "eccentricity": 0.8136,
+      "mean_intensity": 50.9779,
+      "classification": "normal"
+    },
+    {
+      "label": 15,
+      "area_px2": 482,
+      "perimeter": 78.5269,
+      "eccentricity": 0.6204,
+      "mean_intensity": 75.3527,
+      "classification": "normal"
+    },
+    {
+      "label": 16,
+      "area_px2": 299,
+      "perimeter": 67.799,
+      "eccentricity": 0.7903,
+      "mean_intensity": 42.9197,
+      "classification": "normal"
+    },
+    {
+      "label": 17,
+      "area_px2": 768,
+      "perimeter": 136.3614,
+      "eccentricity": 0.7722,
+      "mean_intensity": 51.2318,
+      "classification": "normal"
+    },
+    {
+      "label": 18,
+      "area_px2": 546,
+      "perimeter": 99.2548,
+      "eccentricity": 0.8759,
+      "mean_intensity": 43.8498,
+      "classification": "normal"
+    },
+    {
+      "label": 19,
+      "area_px2": 754,
+      "perimeter": 100.669,
+      "eccentricity": 0.6618,
+      "mean_intensity": 62.2971,
+      "classification": "normal"
+    },
+    {
+      "label": 20,
+      "area_px2": 640,
+      "perimeter": 91.2548,
+      "eccentricity": 0.5954,
+      "mean_intensity": 60.3641,
+      "classification": "normal"
+    },
+    {
+      "label": 21,
+      "area_px2": 282,
+      "perimeter": 61.1127,
+      "eccentricity": 0.6694,
+      "mean_intensity": 116.6489,
+      "classification": "normal"
+    },
+    {
+      "label": 22,
+      "area_px2": 758,
+      "perimeter": 141.6751,
+      "eccentricity": 0.7984,
+      "mean_intensity": 49.3377,
+      "classification": "normal"
+    },
+    {
+      "label": 23,
+      "area_px2": 476,
+      "perimeter": 84.7696,
+      "eccentricity": 0.7558,
+      "mean_intensity": 56.6197,
+      "classification": "normal"
+    },
+    {
+      "label": 24,
+      "area_px2": 614,
+      "perimeter": 90.4264,
+      "eccentricity": 0.6674,
+      "mean_intensity": 69.6075,
+      "classification": "normal"
+    },
+    {
+      "label": 25,
+      "area_px2": 814,
+      "perimeter": 141.9828,
+      "eccentricity": 0.7742,
+      "mean_intensity": 48.4717,
+      "classification": "enlarged"
+    },
+    {
+      "label": 26,
+      "area_px2": 686,
+      "perimeter": 118.2254,
+      "eccentricity": 0.68,
+      "mean_intensity": 57.8397,
+      "classification": "normal"
+    }
+  ],
+  "scoring": {
+    "matching": "hungarian_on_dice",
+    "dice_threshold": 0.3,
+    "area_tolerance_pct": 10,
+    "perimeter_tolerance_pct": 10,
+    "intensity_tolerance_abs": 5.0,
+    "count_tolerance": 2
+  }
+}

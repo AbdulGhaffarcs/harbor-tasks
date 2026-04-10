@@ -1,0 +1,11 @@
+package_id,package_color,route,final_bin
+1,RED,0->1->4,BIN_B
+2,BLUE,0->2->4,BIN_C
+3,GREEN,0->2->4,BIN_C
+4,RED,0->2->5,BIN_C
+5,RED,0->1->4,BIN_C
+6,BLUE,0->2->5,BIN_C
+7,GREEN,0->2->5,BIN_D
+8,BLUE,0->2->4,BIN_B
+9,RED,0->2->4,BIN_B
+10,GREEN,0->1->4,BIN_C

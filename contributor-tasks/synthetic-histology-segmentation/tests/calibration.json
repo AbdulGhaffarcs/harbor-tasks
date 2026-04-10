@@ -1,0 +1,18 @@
+{
+  "seed": 7,
+  "image_size": "800x800",
+  "n_regions": 26,
+  "method": "local_threshold_watershed",
+  "block_size": 51,
+  "offset": 10,
+  "connectivity": 2,
+  "min_area_px2": 200,
+  "se_open_radius": 2,
+  "watershed_min_distance": 15,
+  "classification_bins": {
+    "normal": "area 200-800 px2",
+    "enlarged": "area > 800 px2"
+  },
+  "scoring": "hungarian_dice(40)+count(15)+area(15)+classification(20)+perimeter(10)",
+  "deterministic": true
+}

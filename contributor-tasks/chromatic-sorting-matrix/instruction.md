@@ -1,6 +1,6 @@
 # Task: Chromatic Sorting Matrix Simulation
 
-You are managing an automated sorting facility. Analyze the provided image: `/task/sorting_network.png`.
+You are managing an automated sorting facility. Analyze the provided image: `sorting_network.png` (located in your current working directory).
 
 ### 1. Visual Topology & State Extraction
 The image displays a network of colored nodes (RED, BLUE, GREEN) and final destination Bins. 
@@ -14,9 +14,9 @@ Simulate the packages passing through the network:
 2. **State Mutation:** Immediately after a package passes through a node, if the package's color **MATCHES** the node's color, the node's diverter arrow **FLIPS** (L becomes R, R becomes L). If colors do not match, the arrow remains unchanged.
 
 ### Your Goal & Output Artifacts
-You must write **TWO** files.
+You must write **TWO** files to your current working directory.
 
-**File 1: `/task/topology.dot`**
+**File 1: `topology.dot`**
 A strict Graphviz DOT file representing the initial, unmutated topology extracted from the image. 
 *Use exact syntax:*
 ```dot

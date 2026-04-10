@@ -1,3 +1,9 @@
+---
+
+### 2. Update `tests/test_outputs.py`
+We also need to update the evaluation script so it checks for the agent's files in the current working directory, rather than looking in `/task/`. Replace your `tests/test_outputs.py` with this updated version:
+
+```python
 import csv
 import re
 import pathlib
@@ -5,11 +11,12 @@ import pytest
 
 TESTS_DIR = pathlib.Path("/tests")
 
-AGENT_DOT = pathlib.Path("/task/topology.dot")
-AGENT_CSV = pathlib.Path("/task/trace.csv")
+# Use relative paths since Harbor evaluates from the agent's active workspace
+AGENT_DOT = pathlib.Path("topology.dot")
+AGENT_CSV = pathlib.Path("trace.csv")
 
-TRUTH_DOT = pathlib.Path("/task/expected_topology.dot")
-TRUTH_CSV = pathlib.Path("/task/expected_trace.csv")
+TRUTH_DOT = TESTS_DIR / "solution/expected_topology.dot"
+TRUTH_CSV = TESTS_DIR / "solution/expected_trace.csv"
 
 def parse_dot(filepath):
     """Extracts node states and edges using Regex for dependency-free blind evaluation."""
@@ -27,7 +34,7 @@ def parse_dot(filepath):
 
 def test_topology_extraction():
     """Validates the Graphviz DOT initial state extraction."""
-    assert AGENT_DOT.exists(), "Agent failed to produce /task/topology.dot"
+    assert AGENT_DOT.exists(), "Agent failed to produce topology.dot in the working directory."
     
     a_nodes, a_edges = parse_dot(AGENT_DOT)
     t_nodes, t_edges = parse_dot(TRUTH_DOT)
@@ -37,7 +44,7 @@ def test_topology_extraction():
 
 def test_simulation_trace():
     """Validates the exact per-package algorithmic simulation CSV."""
-    assert AGENT_CSV.exists(), "Agent failed to produce /task/trace.csv"
+    assert AGENT_CSV.exists(), "Agent failed to produce trace.csv in the working directory."
     
     with open(AGENT_CSV, 'r') as fa, open(TRUTH_CSV, 'r') as ft:
         agent_reader = list(csv.DictReader(fa))

@@ -1,0 +1,40 @@
+schema_version = "1.1"
+version = "1.0"
+
+[[sources]]
+source_name = "Synthetic CC0 histology slide (seed=7, scikit-image)"
+source_url = "https://github.com/AbdulGhaffarcs/harbor-tasks"
+source_license = "CC0"
+derived_files = ["environment/data/slide.png"]
+notes = "Fully synthetic grayscale histology slide, 800x800px, generated with numpy/scikit-image (seed=7). 19 synthetic nuclei + 3 artifact decoys. No real patient data. CC0."
+
+[task]
+name = "synthetic-histology-segmentation"
+description = "Segment cell nuclei in a synthetic grayscale histology slide, measure morphological properties per region, classify as normal/enlarged, and output labeled_mask.png + measurements.csv. Scored by Hungarian-matched Dice, measurement accuracy, and classification."
+authors = [{ name = "Abdul Ghaffar", email = "abghaffar360@gmail.com" }]
+keywords = ["histology","segmentation","morphology","medical-imaging","scikit-image","multi-step"]
+
+[metadata]
+difficulty = "hard"
+category = "visual-reasoning"
+difficulty_explanation = "Multi-step: (1) visually inspect slide to choose threshold; (2) apply morphological operations; (3) label connected components; (4) measure area/perimeter/eccentricity/intensity per region; (5) classify regions; (6) iteratively refine to maximize Dice. Difficulty from image complexity: overlapping nuclei, artifact decoys, varying intensities."
+tags = ["histology","segmentation","morphology","scikit-image","multi-step","medical-imaging"]
+parser_name = "pytest"
+source = "https://github.com/AbdulGhaffarcs/harbor-tasks"
+
+[solution]
+env = {}
+
+[verifier]
+timeout_sec = 300.0
+[verifier.env]
+
+[agent]
+timeout_sec = 300.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 2
+memory_mb = 2048
+storage_mb = 2048
+gpus = 0
