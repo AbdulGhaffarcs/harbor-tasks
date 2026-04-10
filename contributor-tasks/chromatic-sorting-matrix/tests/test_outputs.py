@@ -10,8 +10,8 @@ AGENT_DOT = pathlib.Path("topology.dot")
 AGENT_CSV = pathlib.Path("trace.csv")
 
 # Ground truth files with your chosen prefix
-TRUTH_DOT = TESTS_DIR / "solution/topology.dot"
-TRUTH_CSV = TESTS_DIR / "solution/trace.csv"
+TRUTH_DOT = TESTS_DIR / "solution/expected_topology.dot"
+TRUTH_CSV = TESTS_DIR / "solution/expected_trace.csv"
 
 def parse_dot(filepath):
     """Extracts node states and edges using Regex for dependency-free blind evaluation."""
