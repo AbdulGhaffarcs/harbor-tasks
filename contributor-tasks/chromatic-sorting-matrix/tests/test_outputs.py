@@ -9,7 +9,7 @@ TESTS_DIR = pathlib.Path("/tests")
 AGENT_DOT = pathlib.Path("topology.dot")
 AGENT_CSV = pathlib.Path("trace.csv")
 
-# Ground truth files with your chosen prefix
+# Ground truth files synced with your actual filenames
 TRUTH_DOT = TESTS_DIR / "solution/expected_topology.dot"
 TRUTH_CSV = TESTS_DIR / "solution/expected_trace.csv"
 
