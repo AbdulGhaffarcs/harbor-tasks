@@ -1,52 +1,65 @@
-"""
-tests/test_outputs.py
-Blind, deterministic scoring for the Chromatic Sorting Matrix task.
-"""
-import json
+import csv
+import re
 import pathlib
 import pytest
 
 TESTS_DIR = pathlib.Path("/tests")
-AGENT_FILE = pathlib.Path("/task/output.json")
-TRUTH_FILE = pathlib.Path("/task/expected_output.json")
 
-def test_deterministic_routing():
-    """Blind evaluation of the agent's multi-layered simulation."""
-    assert AGENT_FILE.exists(), "Output file not found: The agent must write output.json to /task/output.json"
+AGENT_DOT = pathlib.Path("/task/topology.dot")
+AGENT_CSV = pathlib.Path("/task/trace.csv")
+
+TRUTH_DOT = pathlib.Path("/task/expected_topology.dot")
+TRUTH_CSV = pathlib.Path("/task/expected_trace.csv")
+
+def parse_dot(filepath):
+    """Extracts node states and edges using Regex for dependency-free blind evaluation."""
+    content = filepath.read_text()
+    nodes = {}
+    edges = set()
     
-    try:
-        with open(AGENT_FILE, 'r') as f:
-            agent_data = json.load(f)
-    except json.JSONDecodeError as e:
-        pytest.fail(f"/task/output.json is not valid JSON: {e}")
+    for match in re.finditer(r'(\d+)\s*\[color="([A-Z]+)",\s*arrow="([LR])"\]', content):
+        nodes[match.group(1)] = {"color": match.group(2), "arrow": match.group(3)}
         
-    with open(TRUTH_FILE, 'r') as f:
-        truth_data = json.load(f)
+    for match in re.finditer(r'(\d+)\s*->\s*([A-Za-z0-9_]+)\s*\[label="([LR])"\]', content):
+        edges.add((match.group(1), match.group(2), match.group(3)))
+        
+    return nodes, edges
 
-    correct_bins = 0
-    for bin_name in ["BIN_A", "BIN_B", "BIN_C", "BIN_D"]:
-        assert bin_name in agent_data, f"Missing {bin_name} key in output."
-        if agent_data[bin_name] == truth_data[bin_name]:
-            correct_bins += 1
-
-    # Score calculation (25 points per correct bin)
-    score = (correct_bins / 4.0) * 100
+def test_topology_extraction():
+    """Validates the Graphviz DOT initial state extraction."""
+    assert AGENT_DOT.exists(), "Agent failed to produce /task/topology.dot"
     
+    a_nodes, a_edges = parse_dot(AGENT_DOT)
+    t_nodes, t_edges = parse_dot(TRUTH_DOT)
+    
+    assert a_nodes == t_nodes, f"Topology Node extraction mismatch. Expected: {t_nodes}, Got: {a_nodes}"
+    assert a_edges == t_edges, f"Topology Edge extraction mismatch."
+
+def test_simulation_trace():
+    """Validates the exact per-package algorithmic simulation CSV."""
+    assert AGENT_CSV.exists(), "Agent failed to produce /task/trace.csv"
+    
+    with open(AGENT_CSV, 'r') as fa, open(TRUTH_CSV, 'r') as ft:
+        agent_reader = list(csv.DictReader(fa))
+        truth_reader = list(csv.DictReader(ft))
+        
+    assert len(agent_reader) == len(truth_reader), "CSV row count mismatch. Did you process all 10 packages?"
+    
+    correct_rows = 0
+    total_rows = len(truth_reader)
+    
+    for i in range(total_rows):
+        a_row = agent_reader[i]
+        t_row = truth_reader[i]
+        
+        # Exact strict matching
+        if (a_row.get("package_color") == t_row["package_color"] and
+            a_row.get("route") == t_row["route"] and
+            a_row.get("final_bin") == t_row["final_bin"]):
+            correct_rows += 1
+            
+    score = (correct_rows / total_rows) * 100.0
     score_file = TESTS_DIR / "score.txt"
     score_file.write_text(str(score))
     
-    assert correct_bins == 4, (
-        f"Routing simulation failed. Agent got {correct_bins}/4 bins correct. "
-        "This indicates a failure to accurately track the visual state mutation."
-    )
-
-def test_print_final_score(capsys):
-    """Prints the final computed score to the console."""
-    score_file = TESTS_DIR / "score.txt"
-    if score_file.exists():
-        score = float(score_file.read_text())
-        with capsys.disabled():
-            print(f"\n{'='*52}")
-            print(f"  FINAL SCORE  : {score:.2f} / 100")
-            print(f"{'='*52}")
-    assert True
+    assert correct_rows == total_rows, f"Simulation Trace mismatch. Agent got {correct_rows}/{total_rows} paths correct."

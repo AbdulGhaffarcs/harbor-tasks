@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
-# solution/solve.sh
-# Generates the ground truth mathematically based on the exact 
-# starting parameters of the visual state machine.
 
 mkdir -p /task
 
 cat << 'EOF' > /task/solve.py
-import json
+import csv
 
 nodes = {
     0: {"color": "RED",   "arrow": "L", "L": 1, "R": 2},
@@ -17,25 +14,37 @@ nodes = {
     5: {"color": "BLUE",  "arrow": "L", "L": "BIN_C", "R": "BIN_D"},
 }
 
-packages = ["RED", "BLUE", "GREEN", "RED", "RED", "BLUE", "GREEN", "BLUE", "RED", "GREEN"]
-bins = {"BIN_A": 0, "BIN_B": 0, "BIN_C": 0, "BIN_D": 0}
+# 1. Generate Topology DOT
+with open("/task/expected_topology.dot", "w") as f:
+    f.write("digraph Conveyor {\n")
+    for nid, data in nodes.items():
+        f.write(f'    {nid} [color="{data["color"]}", arrow="{data["arrow"]}"];\n')
+    for nid, data in nodes.items():
+        f.write(f'    {nid} -> {data["L"]} [label="L"];\n')
+        f.write(f'    {nid} -> {data["R"]} [label="R"];\n')
+    f.write("}\n")
 
-for pkg in packages:
-    curr = 0
-    while isinstance(curr, int):
-        node = nodes[curr]
-        direction = node["arrow"]
-        curr = node[direction] # Move to next
-        
-        # Mutation Logic
-        if pkg == node["color"]:
-            node["arrow"] = "R" if direction == "L" else "L"
+# 2. Generate Trace CSV
+queue = ["RED", "BLUE", "GREEN", "RED", "RED", "BLUE", "GREEN", "BLUE", "RED", "GREEN"]
+with open("/task/expected_trace.csv", "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerow(["package_id", "package_color", "route", "final_bin"])
+    
+    for i, pkg in enumerate(queue):
+        curr = 0
+        route = []
+        while isinstance(curr, int):
+            route.append(str(curr))
+            node = nodes[curr]
+            direction = node["arrow"]
+            curr = node[direction]
             
-    bins[curr] += 1
-
-with open("/task/expected_output.json", "w") as f:
-    json.dump(bins, f, indent=2)
+            # Mutation Logic
+            if pkg == node["color"]:
+                node["arrow"] = "R" if direction == "L" else "L"
+                
+        writer.writerow([i+1, pkg, "->".join(route), curr])
 EOF
 
 python3 /task/solve.py
-echo "Golden solution generated at /task/expected_output.json"
+echo "Golden artifacts generated."

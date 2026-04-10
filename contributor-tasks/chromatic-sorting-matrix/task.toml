@@ -3,14 +3,14 @@ schema_version = "1.1"
 
 [task]
 name = "chromatic-sorting-matrix"
-description = "Extract visual topology and simulate a dynamic state-machine to route items through a network."
-authors = [{ name = "Abdul Ghaffar", email = "abghaffar360@gmail.com" }]
-tags = ["visual-reasoning", "state-machine", "topology-extraction", "multi-step"]
+description = "Extract a directed acyclic graph (DAG) topology into Graphviz DOT and simulate a state machine outputting a trace CSV."
+authors = [{ name = "abdulghaffar_official", email = "abghaffar360@gmail.com" }]
+tags = ["visual-reasoning", "state-machine", "topology-extraction", "graphviz", "csv"]
 
 [metadata]
 difficulty = "hard"
 category = "visual-reasoning"
-difficulty_explanation = "Forces multi-layered reasoning. The agent must extract visual graph topology, initial node states, and node colors, then simulate a temporal sequence where passing objects dynamically mutate the visual state of the graph based on conditional logic."
+difficulty_explanation = "Anti-cheese design: The agent must generate a Graphviz DOT file proving perfect extraction of visually encoded topology and initial states. It must then execute an algorithmic trace (outputting a CSV) based on a visually encoded queue of inputs, dynamically mutating states per step."
 
 [[sources]]
 name = "Harbor Synthetic Logic Datasets"

@@ -1,30 +1,29 @@
 # Task: Chromatic Sorting Matrix Simulation
 
-You are managing an automated sorting facility. You are provided with an image of the conveyor network: `/task/sorting_network.png`.
+You are managing an automated sorting facility. Analyze the provided image: `/task/sorting_network.png`.
 
-### The Visual Network
-* Packages enter at **Node 0** (Top).
-* The network consists of colored circular nodes (RED, BLUE, GREEN).
-* Each node has a diverter arrow currently pointing **Left (<--)** or **Right (-->)**.
-* Packages travel down the black lines to either another node or a final Bin (A, B, C, or D).
+### 1. Visual Topology & State Extraction
+The image displays a network of colored nodes (RED, BLUE, GREEN) and final destination Bins. 
+* Each node is labeled with an ID and contains a white diverter arrow pointing Left (L) or Right (R).
+* Paths connecting nodes are explicitly labeled L or R.
+* At the top of the image is the **Incoming Queue**. Packages drop into Node 0 sequentially, starting with the package labeled `1`.
 
-### The Routing Rules
-1. When a package arrives at a node, it exits down the branch indicated by the node's current arrow (L or R).
-2. **The Mutation Rule:** Immediately after a package passes through a node, if the package's color **MATCHES** the node's color, the node's diverter arrow **FLIPS** to the opposite direction (L becomes R, R becomes L). 
-3. If the package color does NOT match the node color, the arrow remains unchanged.
+### 2. The Routing Simulation Rules
+Simulate the packages passing through the network:
+1. When a package arrives at a node, it routes down the path indicated by the node's **current** diverter arrow (L or R).
+2. **State Mutation:** Immediately after a package passes through a node, if the package's color **MATCHES** the node's color, the node's diverter arrow **FLIPS** (L becomes R, R becomes L). If colors do not match, the arrow remains unchanged.
 
-### The Input Sequence
-The following 10 packages are dropped into Node 0, one at a time, in this exact sequence:
-`["RED", "BLUE", "GREEN", "RED", "RED", "BLUE", "GREEN", "BLUE", "RED", "GREEN"]`
+### Your Goal & Output Artifacts
+You must write **TWO** files.
 
-### Your Goal
-Simulate the routing of all 10 packages through the network. Keep track of how the nodes change state over time. Count how many packages end up in each of the 4 bins.
-
-Write your final counts to `/task/output.json` in this exact format:
-```json
-{
-  "BIN_A": 0,
-  "BIN_B": 0,
-  "BIN_C": 0,
-  "BIN_D": 0
+**File 1: `/task/topology.dot`**
+A strict Graphviz DOT file representing the initial, unmutated topology extracted from the image. 
+*Use exact syntax:*
+```dot
+digraph Conveyor {
+    0 [color="RED", arrow="L"];
+    1 [color="BLUE", arrow="R"];
+    0 -> 1 [label="L"];
+    0 -> 2 [label="R"];
+    3 -> BIN_A [label="L"];
 }
