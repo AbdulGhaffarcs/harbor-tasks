@@ -1,9 +1,4 @@
----
 
-### 2. Update `tests/test_outputs.py`
-We also need to update the evaluation script so it checks for the agent's files in the current working directory, rather than looking in `/task/`. Replace your `tests/test_outputs.py` with this updated version:
-
-```python
 import csv
 import re
 import pathlib

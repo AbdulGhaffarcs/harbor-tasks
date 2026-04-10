@@ -1,6 +1,6 @@
 # harbor-tasks
 
-Multimodal task contributions for the Harbor framework (Parsewave/Argus).
+Multimodal task contributions for the Harbor framework.
 
 ## Tasks
 
@@ -13,7 +13,18 @@ A multi-layered visual reasoning and algorithmic simulation task. The agent is p
 3. **Simulate Sequence:** Run a temporal sequence of 10 colored packages dropping through the network.
 4. **Mutate State:** Apply conditional logic where a node's diverter arrow flips direction *only* if a passing package's color matches the node's color.
 
-The agent outputs a structured JSON file containing the final package counts in each bin. The task is evaluated blindly and deterministically using a purely mathematical `pytest` suite—no VLM or external evaluation is used in the scoring pipeline. 
+The agent outputs a structured JSON file containing the final package counts in each bin. The task is evaluated blindly and deterministically using a purely mathematical `pytest` suite—no VLM or external evaluation is used in the scoring pipeline.
+
+#### `synthetic-histology-segmentation`
+**Archetype:** `medical-image-analysis` | **Difficulty:** Hard
+
+A multi-step visual reasoning and morphological analysis task. The agent is provided with a synthetically generated CC0 grayscale histology slide (`slide.png`, 800×800px, seed=7, scikit-image). To solve the task, the agent must:
+1. **Segment:** Identify all cell nuclei using intensity thresholding and morphological operations, separating touching nuclei via watershed transformation.
+2. **Measure:** Compute per-region morphology (area in px², perimeter, eccentricity, mean intensity) using `skimage.measure.regionprops`.
+3. **Classify:** Label each region as `"normal"` (area 200–800 px²) or `"enlarged"` (area > 800 px²).
+4. **Iterate:** Use the provided `/task/evaluate.py` callback to check Dice scores and refine segmentation parameters between attempts.
+
+The agent outputs `labeled_mask.png` (unique integer per region, background=0) and `measurements.csv`. Scored deterministically via Hungarian-matched Dice coefficient, region count accuracy (±2), measurement tolerance (±10%), and classification accuracy — no VLM used.
 
 #### `floor-plan-svg-annotation`
 Given a synthetic CC0 floor plan (640×480px, seed=42), produce an SVG annotation with

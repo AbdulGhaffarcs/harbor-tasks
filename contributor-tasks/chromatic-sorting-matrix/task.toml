@@ -4,10 +4,10 @@ schema_version = "1.1"
 [task]
 name = "chromatic-sorting-matrix"
 description = "Extract a directed acyclic graph (DAG) topology into Graphviz DOT and simulate a state machine outputting a trace CSV."
-authors = [{ name = "abdulghaffar_official", email = "abghaffar360@gmail.com" }]
-tags = ["visual-reasoning", "state-machine", "topology-extraction", "graphviz", "csv"]
+authors = [{ name = "Abdul Ghaffar", email = "abghaffar360@gmail.com" }]
 
 [metadata]
+tags = ["visual-reasoning", "state-machine", "topology-extraction", "graphviz", "csv"]
 difficulty = "hard"
 category = "visual-reasoning"
 difficulty_explanation = "Anti-cheese design: The agent must generate a Graphviz DOT file proving perfect extraction of visually encoded topology and initial states. It must then execute an algorithmic trace (outputting a CSV) based on a visually encoded queue of inputs, dynamically mutating states per step."
