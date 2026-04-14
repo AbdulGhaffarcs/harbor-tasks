@@ -1,0 +1,32 @@
+[task]
+name = "synthetic-topographic-contour-analysis"
+description = "Analyze a synthetic topographic contour map: extract contour topology into a layered SVG overlay, segment drainage basins into a watershed PNG, and sample an elevation profile CSV along a transect."
+version = "1"
+timeout = 600
+
+[task.scoring]
+method = "continuous"
+min_score = 0.0
+max_score = 1.0
+
+[task.outputs]
+files = ["overlay.svg", "watersheds.png", "profile.csv"]
+
+[task.skills]
+required = [
+    "Image Analysis",
+    "Visual Reasoning",
+    "Image Segmentation",
+    "Pattern Recognition",
+    "Color Analysis",
+    "Geospatial Analysis",
+    "Layout Analysis",
+    "Morphology"
+]
+
+[task.calibration]
+oracle_score = 1.0
+nop_score = 0.0
+target_avg_min = 0.2
+target_avg_max = 0.7
+target_spread_min = 0.3

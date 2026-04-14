@@ -1,0 +1,16 @@
+{
+  "oracle": {
+    "expected_score": 1.0,
+    "method": "solve.sh produces outputs from same DEM/seed"
+  },
+  "nop": {
+    "expected_score": 0.0,
+    "method": "no outputs produced"
+  },
+  "target": {
+    "avg_min": 0.2,
+    "avg_max": 0.7,
+    "spread_min": 0.3,
+    "floor": 0.1
+  }
+}

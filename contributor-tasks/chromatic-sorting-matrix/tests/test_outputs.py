@@ -59,7 +59,7 @@ class TestAccuracy:
         if not AGENT_DOT.exists(): pytest.skip("no dot")
         a_nodes, _ = parse_dot(AGENT_DOT)
         t_nodes, _ = parse_dot(TRUTH_DOT)
-        correct = sum(1 for nid,v in t_nodes.items()
+        corrxect = sum(1 for nid,v in t_nodes.items()
                       if a_nodes.get(nid,{}).get("color") == v["color"])
         assert correct >= 2, f"Only {correct}/6 node colors correct"
 

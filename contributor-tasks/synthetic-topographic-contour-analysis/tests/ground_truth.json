@@ -1,0 +1,360 @@
+{
+  "peaks": [
+    {
+      "id": "peak_1",
+      "img_x": 994.0,
+      "img_y": 318.0,
+      "elevation": 885.0
+    },
+    {
+      "id": "peak_2",
+      "img_x": 446.0,
+      "img_y": 346.0,
+      "elevation": 661.9
+    },
+    {
+      "id": "peak_3",
+      "img_x": 1028.0,
+      "img_y": 644.0,
+      "elevation": 584.0
+    },
+    {
+      "id": "peak_4",
+      "img_x": 482.0,
+      "img_y": 888.0,
+      "elevation": 566.0
+    }
+  ],
+  "contours": [
+    {
+      "id": "contour_0_0",
+      "elevation": 50.0
+    },
+    {
+      "id": "contour_1_0",
+      "elevation": 100.0
+    },
+    {
+      "id": "contour_1_1",
+      "elevation": 100.0
+    },
+    {
+      "id": "contour_2_0",
+      "elevation": 150.0
+    },
+    {
+      "id": "contour_3_0",
+      "elevation": 200.0
+    },
+    {
+      "id": "contour_4_0",
+      "elevation": 250.0
+    },
+    {
+      "id": "contour_4_1",
+      "elevation": 250.0
+    },
+    {
+      "id": "contour_4_2",
+      "elevation": 250.0
+    },
+    {
+      "id": "contour_5_0",
+      "elevation": 300.0
+    },
+    {
+      "id": "contour_5_1",
+      "elevation": 300.0
+    },
+    {
+      "id": "contour_5_2",
+      "elevation": 300.0
+    },
+    {
+      "id": "contour_5_3",
+      "elevation": 300.0
+    },
+    {
+      "id": "contour_6_0",
+      "elevation": 350.0
+    },
+    {
+      "id": "contour_6_1",
+      "elevation": 350.0
+    },
+    {
+      "id": "contour_6_2",
+      "elevation": 350.0
+    },
+    {
+      "id": "contour_6_3",
+      "elevation": 350.0
+    },
+    {
+      "id": "contour_7_0",
+      "elevation": 400.0
+    },
+    {
+      "id": "contour_7_1",
+      "elevation": 400.0
+    },
+    {
+      "id": "contour_7_2",
+      "elevation": 400.0
+    },
+    {
+      "id": "contour_7_3",
+      "elevation": 400.0
+    },
+    {
+      "id": "contour_8_0",
+      "elevation": 450.0
+    },
+    {
+      "id": "contour_8_1",
+      "elevation": 450.0
+    },
+    {
+      "id": "contour_8_2",
+      "elevation": 450.0
+    },
+    {
+      "id": "contour_8_3",
+      "elevation": 450.0
+    },
+    {
+      "id": "contour_9_0",
+      "elevation": 500.0
+    },
+    {
+      "id": "contour_9_1",
+      "elevation": 500.0
+    },
+    {
+      "id": "contour_9_2",
+      "elevation": 500.0
+    },
+    {
+      "id": "contour_9_3",
+      "elevation": 500.0
+    },
+    {
+      "id": "contour_10_0",
+      "elevation": 550.0
+    },
+    {
+      "id": "contour_10_1",
+      "elevation": 550.0
+    },
+    {
+      "id": "contour_10_2",
+      "elevation": 550.0
+    },
+    {
+      "id": "contour_10_3",
+      "elevation": 550.0
+    },
+    {
+      "id": "contour_11_0",
+      "elevation": 600.0
+    },
+    {
+      "id": "contour_11_1",
+      "elevation": 600.0
+    },
+    {
+      "id": "contour_12_0",
+      "elevation": 650.0
+    },
+    {
+      "id": "contour_12_1",
+      "elevation": 650.0
+    },
+    {
+      "id": "contour_13_0",
+      "elevation": 700.0
+    },
+    {
+      "id": "contour_14_0",
+      "elevation": 750.0
+    },
+    {
+      "id": "contour_15_0",
+      "elevation": 800.0
+    },
+    {
+      "id": "contour_16_0",
+      "elevation": 850.0
+    }
+  ],
+  "nesting_edges": [
+    {
+      "child": "contour_1_0",
+      "parent": "contour_0_0"
+    },
+    {
+      "child": "contour_1_1",
+      "parent": "contour_0_0"
+    },
+    {
+      "child": "contour_2_0",
+      "parent": "contour_1_0"
+    },
+    {
+      "child": "contour_3_0",
+      "parent": "contour_1_0"
+    },
+    {
+      "child": "contour_4_0",
+      "parent": "contour_3_0"
+    },
+    {
+      "child": "contour_4_1",
+      "parent": "contour_3_0"
+    },
+    {
+      "child": "contour_4_2",
+      "parent": "contour_3_0"
+    },
+    {
+      "child": "contour_5_0",
+      "parent": "contour_4_0"
+    },
+    {
+      "child": "contour_5_1",
+      "parent": "contour_4_0"
+    },
+    {
+      "child": "contour_5_2",
+      "parent": "contour_4_1"
+    },
+    {
+      "child": "contour_5_3",
+      "parent": "contour_4_2"
+    },
+    {
+      "child": "contour_6_0",
+      "parent": "contour_5_0"
+    },
+    {
+      "child": "contour_6_1",
+      "parent": "contour_5_1"
+    },
+    {
+      "child": "contour_6_2",
+      "parent": "contour_5_2"
+    },
+    {
+      "child": "contour_6_3",
+      "parent": "contour_5_3"
+    },
+    {
+      "child": "contour_7_0",
+      "parent": "contour_6_0"
+    },
+    {
+      "child": "contour_7_1",
+      "parent": "contour_6_1"
+    },
+    {
+      "child": "contour_7_2",
+      "parent": "contour_6_2"
+    },
+    {
+      "child": "contour_7_3",
+      "parent": "contour_6_3"
+    },
+    {
+      "child": "contour_8_0",
+      "parent": "contour_7_0"
+    },
+    {
+      "child": "contour_8_1",
+      "parent": "contour_7_1"
+    },
+    {
+      "child": "contour_8_2",
+      "parent": "contour_7_2"
+    },
+    {
+      "child": "contour_8_3",
+      "parent": "contour_7_3"
+    },
+    {
+      "child": "contour_9_0",
+      "parent": "contour_8_0"
+    },
+    {
+      "child": "contour_9_1",
+      "parent": "contour_8_1"
+    },
+    {
+      "child": "contour_9_2",
+      "parent": "contour_8_2"
+    },
+    {
+      "child": "contour_9_3",
+      "parent": "contour_8_3"
+    },
+    {
+      "child": "contour_10_0",
+      "parent": "contour_9_0"
+    },
+    {
+      "child": "contour_10_1",
+      "parent": "contour_9_1"
+    },
+    {
+      "child": "contour_10_2",
+      "parent": "contour_9_2"
+    },
+    {
+      "child": "contour_10_3",
+      "parent": "contour_9_3"
+    },
+    {
+      "child": "contour_11_0",
+      "parent": "contour_10_0"
+    },
+    {
+      "child": "contour_11_1",
+      "parent": "contour_10_1"
+    },
+    {
+      "child": "contour_12_0",
+      "parent": "contour_11_0"
+    },
+    {
+      "child": "contour_12_1",
+      "parent": "contour_11_1"
+    },
+    {
+      "child": "contour_13_0",
+      "parent": "contour_12_0"
+    },
+    {
+      "child": "contour_14_0",
+      "parent": "contour_13_0"
+    },
+    {
+      "child": "contour_15_0",
+      "parent": "contour_14_0"
+    },
+    {
+      "child": "contour_16_0",
+      "parent": "contour_15_0"
+    }
+  ],
+  "num_basins": 8,
+  "basin_pixel_counts": {
+    "1": 37292,
+    "2": 52702,
+    "3": 75879,
+    "4": 91771,
+    "5": 32758,
+    "6": 3225,
+    "7": 71735,
+    "8": 19638
+  },
+  "profile_length": 644
+}

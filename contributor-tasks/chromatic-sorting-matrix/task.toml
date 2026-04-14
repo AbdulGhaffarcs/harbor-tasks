@@ -11,7 +11,7 @@ notes = "Fully synthetic sorting network diagram generated with Pillow. 6 nodes,
 [task]
 name = "chromatic-sorting-matrix"
 description = "Extract DAG topology from a sorting network image into Graphviz DOT, then simulate 10 packages through the state-mutating network and output a trace CSV."
-authors = [{ name = "Abdul Ghaffar", email = "abghaffar360@gmail.com" }]
+authors = [{ name = "abdulghaffar_official", email = "abghaffar360@gmail.com" }]
 keywords = ["visual-reasoning","state-machine","topology","graphviz","simulation"]
 
 [metadata]
