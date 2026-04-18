@@ -1,0 +1,62 @@
+schema_version = "1.1"
+version = "1.0"
+
+[[sources]]
+source_name = "Pillow (PIL Fork)"
+source_url = "https://github.com/python-pillow/Pillow"
+source_license = "MIT"
+derived_files = ["environment/generate_level.py", "environment/data/puzzle.png"]
+notes = "Pillow HPND license is the direct ancestor of MIT and 2-Clause BSD, substantively identical. Treated as MIT-equivalent."
+
+[[sources]]
+source_name = "NumPy"
+source_url = "https://github.com/numpy/numpy"
+source_license = "MIT"
+derived_files = ["tests/test_outputs.py", "environment/data/tools/inspect_cell.py"]
+notes = "NumPy BSD-3-Clause is a permissive license functionally equivalent to MIT. No copyleft."
+
+[[sources]]
+source_name = "Sokoban puzzle generator and assets"
+source_url = "https://github.com/abdulghaffarcs/harbor-tasks"
+source_license = "MIT"
+derived_files = [
+  "environment/generate_level.py",
+  "environment/data/puzzle.png",
+  "environment/data/meta.json",
+  "environment/data/tools/inspect_cell.py",
+  "environment/data/tools/simulate_moves.py",
+  "tests/solution/state.json",
+  "tests/solution/solution.txt",
+]
+notes = "All puzzle layouts, sprites, and renders are procedurally generated from seed 23 by environment/generate_level.py. Level layouts are hand-authored ASCII grids composed entirely by the task author. Three visual skins (slate, moss, dusk) use only primitive shape primitives drawn by Pillow. No third-party sprite or level packs are used. Released as MIT."
+
+[task]
+name = "sokoban-from-image"
+description = "A rendered PNG shows a Sokoban puzzle (walls, floor, boxes, goal cells, one player). The agent must (1) parse the tile grid by classifying each cell from its pixel content (distinguishing box vs box-on-goal requires careful visual comparison), (2) write its parsed state to /output/state.json, and (3) write a move sequence /output/moves.txt that pushes every box onto a goal cell when simulated against the golden puzzle state. Scored by per-cell parse accuracy (30 pts), puzzle-solved correctness via move simulation on the golden state (50 pts), and solution-length efficiency relative to the BFS-optimal path (20 pts)."
+authors = [{ name = "abdulghaffar_official", email = "abghaffar360@gmail.com" }]
+keywords = ["sokoban", "visual-reasoning", "puzzle-solving", "planning", "pattern-recognition", "image-analysis", "multi-step"]
+
+[metadata]
+difficulty = "hard"
+category = "visual-reasoning"
+difficulty_explanation = "Multi-step: (1) identify grid dimensions from raster spec; (2) classify each of up to 90 cells into one of 7 types — crucially distinguishing box from box-on-goal, which share size/position but differ in fill hue; (3) verify the parsed state is physically consistent (exactly one player, closed wall perimeter, box count matches goal count); (4) run a Sokoban solver (BFS) over the parsed state; (5) validate the move sequence does not attempt illegal pushes; (6) iterate if parsing was wrong (the simulator feedback is against the agent's own state, so classification errors produce solver failure). The image uses one of three visual skins chosen deterministically by seed, preventing template-matching shortcuts."
+tags = ["sokoban", "visual-reasoning", "puzzle-solving", "planning", "pattern-recognition", "image-analysis", "multi-step"]
+parser_name = "pytest"
+source = "https://github.com/abdulghaffarcs/harbor-tasks"
+
+[solution]
+env = {}
+
+[verifier]
+timeout_sec = 120.0
+[verifier.env]
+
+[agent]
+timeout_sec = 300.0
+
+[environment]
+build_timeout_sec = 300.0
+cpus = 1
+memory_mb = 1024
+storage_mb = 1024
+gpus = 0

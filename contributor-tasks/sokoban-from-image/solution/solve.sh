@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# solve.sh — Oracle reference solution.
+# Writes /output/state.json and /output/moves.txt from embedded base64 payloads.
+# The Oracle does NOT read tests/solution/ — Harbor does not mount it to
+# the solve container. We embed the golden payload here.
+
+mkdir -p /output
+
+python3 - << 'PYEOF'
+import base64, pathlib
+
+STATE_B64 = "ewogICJ3aWR0aCI6IDksCiAgImhlaWdodCI6IDcsCiAgImdyaWQiOiBbCiAgICBbCiAgICAgICJ3YWxsIiwKICAgICAgIndhbGwiLAogICAgICAid2FsbCIsCiAgICAgICJ3YWxsIiwKICAgICAgIndhbGwiLAogICAgICAid2FsbCIsCiAgICAgICJ3YWxsIiwKICAgICAgIndhbGwiLAogICAgICAid2FsbCIKICAgIF0sCiAgICBbCiAgICAgICJ3YWxsIiwKICAgICAgImZsb29yIiwKICAgICAgImZsb29yIiwKICAgICAgImZsb29yIiwKICAgICAgImZsb29yIiwKICAgICAgImZsb29yIiwKICAgICAgImZsb29yIiwKICAgICAgImZsb29yIiwKICAgICAgIndhbGwiCiAgICBdLAogICAgWwogICAgICAid2FsbCIsCiAgICAgICJmbG9vciIsCiAgICAgICJib3giLAogICAgICAiZmxvb3IiLAogICAgICAiZmxvb3IiLAogICAgICAiZmxvb3IiLAogICAgICAiZ29hbCIsCiAgICAgICJmbG9vciIsCiAgICAgICJ3YWxsIgogICAgXSwKICAgIFsKICAgICAgIndhbGwiLAogICAgICAiZmxvb3IiLAogICAgICAiZmxvb3IiLAogICAgICAiZmxvb3IiLAogICAgICAicGxheWVyIiwKICAgICAgImZsb29yIiwKICAgICAgImZsb29yIiwKICAgICAgImZsb29yIiwKICAgICAgIndhbGwiCiAgICBdLAogICAgWwogICAgICAid2FsbCIsCiAgICAgICJmbG9vciIsCiAgICAgICJnb2FsIiwKICAgICAgImZsb29yIiwKICAgICAgImZsb29yIiwKICAgICAgImZsb29yIiwKICAgICAgImJveCIsCiAgICAgICJmbG9vciIsCiAgICAgICJ3YWxsIgogICAgXSwKICAgIFsKICAgICAgIndhbGwiLAogICAgICAiZmxvb3IiLAogICAgICAiZmxvb3IiLAogICAgICAiZmxvb3IiLAogICAgICAiZmxvb3IiLAogICAgICAiZmxvb3IiLAogICAgICAiZmxvb3IiLAogICAgICAiZmxvb3IiLAogICAgICAid2FsbCIKICAgIF0sCiAgICBbCiAgICAgICJ3YWxsIiwKICAgICAgIndhbGwiLAogICAgICAid2FsbCIsCiAgICAgICJ3YWxsIiwKICAgICAgIndhbGwiLAogICAgICAid2FsbCIsCiAgICAgICJ3YWxsIiwKICAgICAgIndhbGwiLAogICAgICAid2FsbCIKICAgIF0KICBdCn0="
+MOVES_B64 = "VVVMTEREUkREUlJSVVU="
+
+state = base64.b64decode(STATE_B64).decode("utf-8")
+moves = base64.b64decode(MOVES_B64).decode("utf-8").strip()
+
+pathlib.Path("/output/state.json").write_text(state)
+pathlib.Path("/output/moves.txt").write_text(moves)
+
+print(f"Oracle: wrote /output/state.json ({len(state)} chars)")
+print(f"Oracle: wrote /output/moves.txt  ({len(moves)} chars) → {moves!r}")
+PYEOF

@@ -1,0 +1,11 @@
+{
+  "seed": 23,
+  "difficulty": "medium",
+  "skin": "dusk",
+  "width": 9,
+  "height": 7,
+  "tile_size": 40,
+  "margin": 20,
+  "num_boxes": 2,
+  "num_goals": 2
+}
