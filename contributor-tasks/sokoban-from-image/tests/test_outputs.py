@@ -236,6 +236,29 @@ class TestFormat:
             pytest.skip("no agent moves")
         assert len(agent_moves_maybe) > 0, "moves.txt is empty"
 
+    def test_state_structural_consistency(self, agent_state_maybe):
+        """Exactly one player, box count must equal goal count."""
+        if agent_state_maybe is None:
+            pytest.skip("no agent state")
+        grid = agent_state_maybe.get("grid", [])
+        players = 0
+        boxes   = 0
+        goals   = 0
+        for row in grid:
+            for cell in row:
+                if cell in ("player", "player_on_goal"):
+                    players += 1
+                if cell in ("box", "box_on_goal"):
+                    boxes += 1
+                if cell in ("goal", "box_on_goal", "player_on_goal"):
+                    goals += 1
+        assert players == 1, (
+            f"Expected exactly 1 player, found {players}"
+        )
+        assert boxes == goals, (
+            f"Box count ({boxes}) must equal goal count ({goals})"
+        )
+
 
 # ─── Accuracy gate ──────────────────────────────────────────────────────────
 
@@ -254,9 +277,9 @@ class TestAccuracy:
                       if agrid[y][x] == golden_grid[y][x])
         total = gh * gw
         frac = correct / total
-        assert frac >= 0.40, (
+        assert frac >= 0.60, (
             f"Only {correct}/{total} cells correct ({frac:.1%}); "
-            "parse is far below the accuracy floor."
+            "parse is below the 60% accuracy floor."
         )
 
 

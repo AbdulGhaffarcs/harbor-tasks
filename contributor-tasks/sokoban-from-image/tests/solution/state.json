@@ -1,6 +1,6 @@
 {
-  "width": 9,
-  "height": 7,
+  "width": 10,
+  "height": 9,
   "grid": [
     [
       "wall",
@@ -11,12 +11,14 @@
       "wall",
       "wall",
       "wall",
+      "wall",
       "wall"
     ],
     [
       "wall",
       "floor",
       "floor",
+      "wall",
       "floor",
       "floor",
       "floor",
@@ -31,7 +33,8 @@
       "floor",
       "floor",
       "floor",
-      "goal",
+      "floor",
+      "wall",
       "floor",
       "wall"
     ],
@@ -39,36 +42,64 @@
       "wall",
       "floor",
       "floor",
+      "wall",
       "floor",
-      "player",
       "floor",
       "floor",
+      "wall",
       "floor",
       "wall"
     ],
     [
       "wall",
       "floor",
-      "goal",
       "floor",
+      "wall",
+      "floor",
+      "player_on_goal",
+      "floor",
+      "wall",
+      "floor",
+      "wall"
+    ],
+    [
+      "wall",
+      "floor",
+      "floor",
+      "wall",
+      "floor",
+      "floor",
+      "floor",
+      "wall",
+      "floor",
+      "wall"
+    ],
+    [
+      "wall",
+      "floor",
+      "floor",
+      "goal",
       "floor",
       "floor",
       "box",
       "floor",
+      "wall",
       "wall"
     ],
     [
+      "wall",
+      "box_on_goal",
+      "floor",
       "wall",
       "floor",
       "floor",
       "floor",
       "floor",
       "floor",
-      "floor",
-      "floor",
       "wall"
     ],
     [
+      "wall",
       "wall",
       "wall",
       "wall",

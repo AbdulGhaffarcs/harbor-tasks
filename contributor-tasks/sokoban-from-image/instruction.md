@@ -64,7 +64,7 @@ goals are distinctly colored (cool/green), and the player is a saturated circle.
 ## `moves.txt` format
 
 A single line of characters drawn from `{U, D, L, R}`. Case-sensitive,
-no separators, no trailing newline required. Example: `UULLDDRDDRRRUU`.
+no separators, no trailing newline required. Example: `UURDDL`.
 
 ## Sokoban rules (for simulation)
 

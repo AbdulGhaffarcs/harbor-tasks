@@ -142,13 +142,15 @@ LEVEL_LIBRARY = {
     ],
     "medium": [
         [
-            "#########",
-            "#.......#",
-            "#.$...*.#",
-            "#...@...#",
-            "#.*...$.#",
-            "#.......#",
-            "#########",
+            "##########",
+            "#..#.....#",
+            "#.$....#.#",
+            "#..#...#.#",
+            "#..#.P.#.#",
+            "#..#...#.#",
+            "#..*..$.##",
+            "#B.#.....#",
+            "##########",
         ],
         [
             "##########",
@@ -169,8 +171,8 @@ LEVEL_LIBRARY = {
 #   *  goal
 #   $  box  (on floor)
 #   @  player (on floor)
-# We deliberately do NOT use the ambiguous "+" and "B" variants; all boxes
-# in the source layouts start on plain floor, all goals start empty.
+#   B  box on a goal cell (already placed)
+#   P  player standing on a goal cell
 
 SYMBOL_TO_CELL = {
     "#": "wall",
@@ -178,6 +180,8 @@ SYMBOL_TO_CELL = {
     "*": "goal",
     "$": "box",
     "@": "player",
+    "B": "box_on_goal",
+    "P": "player_on_goal",
 }
 
 
