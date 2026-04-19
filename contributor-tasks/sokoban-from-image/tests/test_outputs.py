@@ -277,9 +277,9 @@ class TestAccuracy:
                       if agrid[y][x] == golden_grid[y][x])
         total = gh * gw
         frac = correct / total
-        assert frac >= 0.60, (
+        assert frac >= 0.70, (
             f"Only {correct}/{total} cells correct ({frac:.1%}); "
-            "parse is below the 60% accuracy floor."
+            "parse is below the 70% accuracy floor."
         )
 
 
