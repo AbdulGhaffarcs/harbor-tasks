@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(py:*)",
+      "Bash(curl -s -L --max-time 15 \"https://mzrg.com/sokoban/\")"
+    ]
+  }
+}

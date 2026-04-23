@@ -31,15 +31,15 @@ derived_files = [
 notes = "All puzzle layouts, sprites, and renders are procedurally generated from seed 23 by environment/generate_level.py. Level layouts are hand-authored ASCII grids composed entirely by the task author. Three visual skins (slate, moss, dusk) use only primitive shape primitives drawn by Pillow. No third-party sprite or level packs are used. Released as MIT."
 
 [task]
-name = "sokoban-from-image"
-description = "A rendered PNG shows a Sokoban puzzle (walls, floor, boxes, goal cells, box-on-goal, player-on-goal). The agent must (1) parse the 30x11 tile grid by classifying each of 330 cells from its pixel content — crucially distinguishing box vs box-on-goal (different fill hue) and identifying the player-on-goal composite cell, (2) write its parsed state to /output/state.json, and (3) write a 177-move sequence /output/moves.txt that pushes every box onto a goal cell when simulated against the golden puzzle state. The wide S-curve corridor structure (28-tile-wide corridors) forces boxes through extremely long multi-turn paths with a 158k-state BFS search space. Scored by per-cell parse accuracy (30 pts), puzzle-solved correctness via move simulation on the golden state (50 pts), and solution-length efficiency relative to the BFS-optimal path (20 pts)."
-authors = [{ name = "abdulghaffar_official", email = "abghaffar360@gmail.com" }]
+name = "dzuokumor/sokoban-from-image"
+description = "A rendered PNG shows a Sokoban puzzle (walls, floor, boxes, goal cells, one player). The agent must (1) parse the tile grid by classifying each cell from its pixel content (distinguishing box vs box-on-goal requires careful visual comparison), (2) write its parsed state to /output/state.json, and (3) write a move sequence /output/moves.txt that pushes every box onto a goal cell when simulated against the golden puzzle state. Scored by structural validity (5 pts), per-cell parse accuracy (25 pts), full-solve correctness via move simulation on the golden state (50 pts, all-or-nothing), and solution length vs optimal (20 pts). Maximum reward is 1.0, reached only by the Oracle reference solution."
+authors = [{ name = "Abdul Ghaffar", email = "abghaffar360@gmail.com" }]
 keywords = ["sokoban", "visual-reasoning", "puzzle-solving", "planning", "pattern-recognition", "image-analysis", "multi-step"]
 
 [metadata]
 difficulty = "hard"
 category = "visual-reasoning"
-difficulty_explanation = "Multi-step: (1) identify grid dimensions from raster spec; (2) classify each of 330 cells (30x11 grid) into one of 7 types — crucially distinguishing box from box-on-goal (share size/position but differ in fill hue) and identifying player-on-goal (player circle overlaid on goal ring); (3) verify the parsed state is physically consistent (exactly one player, closed wall perimeter, box count matches goal count); (4) run a Sokoban solver (BFS) over the parsed state with 3 boxes through wide 28-tile S-curve corridors producing a 158k-state search space; (5) validate the 177-move sequence does not attempt illegal pushes; (6) iterate if parsing was wrong. The wide corridors create an enormous BFS state space making brute-force solving computationally expensive within the agent timeout. The image uses one of three visual skins chosen deterministically by seed, preventing template-matching shortcuts."
+difficulty_explanation = "Multi-step: (1) identify grid dimensions from raster spec; (2) classify each of up to 176 cells into one of 7 types — crucially distinguishing box from box_on_goal, which share size/position but differ in fill hue; (3) verify the parsed state is physically consistent (exactly one player, closed wall perimeter, box count matches goal count); (4) run a Sokoban solver (BFS) over the parsed state — the 16x11 grid with a 125-move optimal solution stresses agents' ability to run BFS within the verification budget; (5) validate the move sequence does not attempt illegal pushes; (6) iterate if parsing was wrong (the simulator feedback is against the agent's own state, so classification errors produce solver failure). The image uses one of three visual skins chosen deterministically by seed, preventing template-matching shortcuts."
 tags = ["sokoban", "visual-reasoning", "puzzle-solving", "planning", "pattern-recognition", "image-analysis", "multi-step"]
 parser_name = "pytest"
 source = "https://github.com/abdulghaffarcs/harbor-tasks"
@@ -48,7 +48,7 @@ source = "https://github.com/abdulghaffarcs/harbor-tasks"
 env = {}
 
 [verifier]
-timeout_sec = 120.0
+timeout_sec = 300.0
 [verifier.env]
 
 [agent]
@@ -56,7 +56,7 @@ timeout_sec = 300.0
 
 [environment]
 build_timeout_sec = 300.0
-cpus = 1
-memory_mb = 1024
-storage_mb = 1024
+cpus = 2
+memory_mb = 2048
+storage_mb = 2048
 gpus = 0

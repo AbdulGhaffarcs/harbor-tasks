@@ -15,8 +15,8 @@ WORKDIR /task
 # are NEVER placed in the runtime image — they live only in the archive
 # at /tests/solution/ (mounted by Harbor) and environment/generate_level.py
 # (outside the Docker COPY path).
-COPY data/puzzle.png   /task/puzzle.png
-COPY data/meta.json    /task/meta.json
+COPY data/puzzle.png    /task/puzzle.png
+COPY data/meta.json     /task/meta.json
 COPY data/tools/       /task/tools/
 
 RUN mkdir -p /output /logs/verifier

@@ -2,118 +2,97 @@
 
 ## Goal
 
-A rendered PNG at `/task/puzzle.png` shows a Sokoban puzzle: a grid of tiles
-containing walls, floor, boxes, goal cells, and exactly one player. Recover the
-puzzle state from the image and produce a move sequence that pushes every box
-onto a goal cell.
+A rendered Sokoban puzzle PNG is at `/task/puzzle.png`. Parse every cell
+visually and produce a valid solution. Write two files:
 
-You must produce **two** output files:
+- `/output/state.json` — your parsed grid
+- `/output/moves.txt` — move string that solves the puzzle
 
-- `/output/state.json` — your parsed interpretation of the grid
-- `/output/moves.txt` — the move sequence that solves the puzzle
+---
 
 ## Raster specification
 
-The image follows a fixed spec. Use this to locate cells precisely:
+| Property | Value |
+|----------|-------|
+| Tile size | 40 x 40 pixels |
+| Margin | 20 pixels on all four sides |
+| Cell at column c, row r | pixels `[20+40·c, 20+40·r]` to `[59+40·c, 59+40·r]` |
+| Grid dimensions | `meta.json` fields `width` x `height` |
+| Exact palette hex | `meta.json` field `palette` |
 
-- Tile size: **40 × 40 pixels**
-- Margin: **20 pixels** on all four sides of the grid
-- Grid origin: the top-left cell is at pixel `(20, 20)` (margin, margin)
-- A cell at column `c`, row `r` occupies pixels
-  `[20 + 40·c, 20 + 40·r]` to `[59 + 40·c, 59 + 40·r]`
-- Grid dimensions are available in `/task/meta.json`
+## Cell types and how to classify them
 
-## Cell types
+Read `/task/meta.json`. It contains `tile_size`, `margin`, `width`, `height`,
+and a `palette` dict with exact hex colors for each cell type.
 
-Each cell is one of seven types, with these visual cues:
+For each cell at `(col, row)`:
+1. Sample the **corner pixel** at `(x0+2, y0+2)` — if it matches `palette.wall`, cell is `wall`
+2. Sample the **center patch** `[cy-8:cy+8, cx-8:cx+8]` and compute mean RGB
+3. **Goal ring detection:** scan every pixel at radius 10%–50% of tile from center
+   for any pixel within L2 distance 25 of `palette.goal_ring` → `has_ring = True`
+4. Classify by center distance to palette colors:
+   - Center close to `palette.player` → `player` (or `player_on_goal` if `has_ring`)
+   - Center close to `palette.box_on_goal` AND closer than `palette.box` → `box_on_goal`
+   - Center close to `palette.box` → `box`
+   - `has_ring` is True → `goal`
+   - Otherwise → `floor`
 
-| Cell           | Visual cue                                                           |
-|----------------|----------------------------------------------------------------------|
-| `wall`         | Solid dark-tone rectangle filling the entire tile                    |
-| `floor`        | Light-tone rectangle with thin border                                |
-| `goal`         | Floor tile with a colored circular ring                              |
-| `box`          | Floor tile with a mid-tone **square** drawn on top (warm color)      |
-| `box_on_goal`  | Same as box but **different fill color** (cool/green tone), indicating it is correctly placed. The goal ring may or may not remain visible |
-| `player`       | Floor tile with a colored **circle** (blue or violet) on top         |
-| `player_on_goal` | Player circle on a goal tile; the goal ring frames the player      |
+| Cell | Visual cue |
+|------|-----------|
+| `wall` | Solid dark fill. Corner matches `palette.wall`. |
+| `floor` | Light fill. Center matches `palette.floor`. |
+| `goal` | Floor + circular ring outline (`palette.goal_ring`). |
+| `box` | Floor + warm inner square (`palette.box`). |
+| `box_on_goal` | Floor + goal ring (always visible) + teal inner square (`palette.box_on_goal`). |
+| `player` | Floor + violet/blue circle (`palette.player`). |
+| `player_on_goal` | Floor + goal ring (always visible) + player circle. |
 
-A single PNG uses one visual skin (one of three) with its own color scheme.
-All seven cell types always appear with the same relative ordering of tones:
-walls are the darkest, floor is mid-light, boxes are mid-tone warm, boxes on
-goals are distinctly colored (cool/green), and the player is a saturated circle.
+**`box` vs `box_on_goal`:** completely different hue — warm/brown vs cool/teal.
 
-## `state.json` schema
+**Goal ring:** only 3px wide. Must scan for a single matching pixel, not average.
+
+## state.json schema
 
 ```json
-{
-  "width":  <int>,
-  "height": <int>,
-  "grid": [
-    ["wall", "wall", "wall", ...],
-    ["wall", "floor", "goal", ...],
-    ...
-  ]
-}
+{"width": 16, "height": 11, "grid": [["wall",...], ["wall","floor",...]]}
 ```
 
-- `grid[y][x]` is the cell at column `x`, row `y`. `y = 0` is the **top** row.
-- Every string must be one of:
-  `wall`, `floor`, `goal`, `box`, `box_on_goal`, `player`, `player_on_goal`.
-- Outer dimensions must match `width × height`.
+`grid[y][x]` — y=0 is top row. Valid values: `wall`, `floor`, `goal`, `box`,
+`box_on_goal`, `player`, `player_on_goal`. Must have exactly 1 player;
+box count must equal goal count.
 
-## `moves.txt` format
+## moves.txt format
 
-A single line of characters drawn from `{U, D, L, R}`. Case-sensitive,
-no separators, no trailing newline required. Example: `UURDDL`.
+One line of characters from {U, D, L, R}. No spaces. Example: `UURDDL`
 
-## Sokoban rules (for simulation)
+## Sokoban rules
 
-- Moves `U`, `D`, `L`, `R` move the player **one tile** up/down/left/right.
-- If the destination is **wall** → the move is **invalid** and simulation
-  halts immediately, zeroing the puzzle-solved component of your score.
-- If the destination is empty (`floor`, `goal`) → the player walks onto it.
-- If the destination contains a **box** (or `box_on_goal`) → check the cell
-  **one further step** in the same direction:
-  - If that cell is wall, box, or box-on-goal → the move is **invalid**.
-  - Otherwise → the box is pushed one tile, the player follows.
-- Boxes cannot be pulled. At most one box moves per step.
-- The puzzle is solved when no `box` cells remain (all boxes are `box_on_goal`).
+- U/D/L/R moves the player one tile in that direction
+- **Wall** in destination → invalid move → simulation halts (partial credit may still apply for boxes placed so far)
+- **Floor/goal** in destination → player walks there
+- **Box** in destination → check one cell further:
+  - Wall or box beyond → invalid
+  - Empty beyond → box pushed, player follows
+- Boxes cannot be pulled. One box per move.
+- **Solved:** no `box` cells remain (all are `box_on_goal`)
 
-## Scoring (100 pts total)
+## Scoring (100 pts maximum)
 
 | Component | Weight | Method |
 |-----------|--------|--------|
-| Grid parse | 30 pts | Per-cell match against golden `state.json`. `30 × (correct_cells / total_cells)` |
-| Puzzle solved | 50 pts | Simulate your moves on the **golden** state. `50` if all boxes reach goals; partial credit `50 × (boxes_on_goal / total_boxes)` at final position; `0` if any move is invalid |
-| Solution length | 20 pts | `20 × min(1, optimal_length / your_length)` — the optimal length is pre-computed by BFS over the golden state |
-
-The final score is written to `/tests/score.txt` as a number in `[0, 100]`.
+| Format floor | 5 pts | Awarded for any structurally valid `state.json` with the correct grid dimensions |
+| Grid parse | 25 pts | `25 × correct_cells / total_cells` |
+| Puzzle solved | 50 pts | Full 50 pts **only** if every box reaches a goal cell with all moves valid. Partial solves receive 0 pts — the puzzle must be fully solved to score this component |
+| Solution length | 20 pts | Only if fully solved: `20 × min(1, optimal/agent_len)` |
 
 ## Helper tools
 
-**Inspect a single cell** (dominant colors, border samples):
 ```bash
+# Inspect a single cell's pixel colors
 python3 /task/tools/inspect_cell.py --col 3 --row 2
+
+# Simulate your move string against your state.json  
+python3 /task/tools/simulate_moves.py --state /output/state.json --moves /output/moves.txt -v
 ```
 
-**Simulate your move string against your own state.json**:
-```bash
-python3 /task/tools/simulate_moves.py \
-    --state /output/state.json \
-    --moves /output/moves.txt -v
-```
-
-## Approach
-
-1. Read `/task/meta.json` to get grid dimensions and tile size
-2. Iterate every `(col, row)` — sample pixel colors at the center, border,
-   and ring band to classify the cell
-3. Pay special attention to distinguishing **`box` vs `box_on_goal`**:
-   on-goal boxes have a visibly different fill hue from off-goal boxes
-4. Write `/output/state.json` with your parsed grid
-5. Implement or run a Sokoban solver (BFS is sufficient for these puzzle sizes)
-   against your parsed state
-6. Verify your sequence with `simulate_moves.py`
-7. Write the solution to `/output/moves.txt`
-
-Available Python packages: `Pillow==10.3.0`, `numpy==1.26.4`.
+Available: `python3`, `Pillow==10.3.0`, `numpy==1.26.4`

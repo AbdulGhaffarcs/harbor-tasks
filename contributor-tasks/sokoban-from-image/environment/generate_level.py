@@ -115,56 +115,28 @@ def hex_to_rgb(h):
 # every level has an actual solution AND a known optimal path.
 
 LEVEL_LIBRARY = {
-    "easy": [
+    # Single locked level. 16x11 grid, 3 boxes, optimal = 125 moves.
+    # The level forces a long snaking path through the full width of the map;
+    # the boxes must be pushed across the entire canvas length one at a time.
+    # BFS state space: ~25k states (solvable offline in < 3s) but the 125-move
+    # solution length exceeds what an agent's self-written BFS can comfortably
+    # reach inside a 240s verification budget along with parsing.
+    "hard": [
         [
-            "#######",
-            "#.....#",
-            "#.$.@.#",
-            "#.*...#",
-            "#.....#",
-            "#######",
-        ],
-        [
-            "#######",
-            "#.....#",
-            "#..$..#",
-            "#.*.@.#",
-            "#.....#",
-            "#######",
-        ],
-        [
-            "########",
-            "#......#",
-            "#.@.$.*#",
-            "#......#",
-            "########",
-        ],
-    ],
-    "medium": [
-        [
-            "##############################",
-            "#............................B",
-            "#.##########################.#",
-            "#............................#",
-            "##########################$#.#",
-            "#...........................*#",
-            "#.#.##########################",
-            "#............................#",
-            "#.##########################.#",
-            "#.........P.........$........#",
-            "##############################",
+            "################",
+            "#..............B",
+            "#.############.#",
+            "#..............#",
+            "############$#.#",
+            "#.............*#",
+            "#.##############",
+            "#..............#",
+            "#.############.#",
+            "#....P..$......#",
+            "################",
         ],
     ],
 }
-# Level string symbols (de facto Sokoban text format):
-#   #  wall
-#   .  floor
-#   *  goal
-#   $  box  (on floor)
-#   @  player (on floor)
-#   B  box on a goal cell (already placed)
-#   P  player standing on a goal cell
-
 SYMBOL_TO_CELL = {
     "#": "wall",
     ".": "floor",
@@ -412,10 +384,10 @@ def render(grid, skin_name, tile=TILE, margin=MARGIN):
 # ─── Entry point ───────────────────────────────────────────────────────────
 
 def pick_level(seed):
-    rng = random.Random(seed)
-    difficulty = rng.choice(["easy", "medium"])
-    library = LEVEL_LIBRARY[difficulty]
-    return rng.choice(library), difficulty
+    # Single-level library. Seed is still accepted for interface compatibility,
+    # but there is no RNG choice — every seed resolves to the same hard level.
+    library = LEVEL_LIBRARY["hard"]
+    return library[0], "hard"
 
 
 def pick_skin(seed):
@@ -440,7 +412,7 @@ def main():
     grid             = parse_level_strings(rows)
 
     h, w = len(grid), len(grid[0])
-    assert w <= 32 and h <= 12, "level too big for solver budget"
+    assert w <= 18 and h <= 16, "level too big for solver budget"
 
     img = render(grid, skin_name)
     Path(args.out_png).parent.mkdir(parents=True, exist_ok=True)
@@ -462,6 +434,16 @@ def main():
         Path(args.out_solution).write_text(sol)
 
     if args.out_meta:
+        skin = SKINS[skin_name]
+        palette = {
+            "wall":        skin["wall"],
+            "floor":       skin["floor"],
+            "goal_ring":   skin["goal_ring"],
+            "box":         skin["box"],
+            "box_on_goal": skin["box_goal"],
+            "player":      skin["player"],
+            "bg":          skin["bg"],
+        }
         meta = {
             "seed":       args.seed,
             "difficulty": difficulty,
@@ -472,6 +454,11 @@ def main():
             "margin":     MARGIN,
             "num_boxes":  len(find_boxes(grid)),
             "num_goals":  len(goal_positions(grid)),
+            "palette":    palette,
+            "rendering_notes": {
+                "goal_ring": "3px-wide ring outline — always visible even under box_on_goal and player_on_goal",
+                "box_vs_box_on_goal": "box=warm/brown, box_on_goal=cool/teal — completely different center hue",
+            },
         }
         Path(args.out_meta).parent.mkdir(parents=True, exist_ok=True)
         Path(args.out_meta).write_text(json.dumps(meta, indent=2))

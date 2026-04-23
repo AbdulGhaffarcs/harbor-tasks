@@ -1,11 +1,24 @@
 {
   "seed": 23,
-  "difficulty": "medium",
+  "difficulty": "hard",
   "skin": "dusk",
-  "width": 30,
+  "width": 16,
   "height": 11,
   "tile_size": 40,
   "margin": 20,
   "num_boxes": 3,
-  "num_goals": 3
+  "num_goals": 3,
+  "palette": {
+    "wall": "#4C4057",
+    "floor": "#CCC3D3",
+    "goal_ring": "#AE4377",
+    "box": "#7F6A4B",
+    "box_on_goal": "#4F8A84",
+    "player": "#5A4BAE",
+    "bg": "#DCD6E2"
+  },
+  "rendering_notes": {
+    "goal_ring": "3px-wide ring outline \u2014 always visible even under box_on_goal and player_on_goal",
+    "box_vs_box_on_goal": "box=warm/brown, box_on_goal=cool/teal \u2014 completely different center hue"
+  }
 }
